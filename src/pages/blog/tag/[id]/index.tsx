@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
     const blogListPromise = client.v1.blog.$get({
       query: {
         fields: 'id,title',
-        filters: `tags[contains]${params.id}`,
+        filters: `tags[contains]${params.id as string}`,
       },
     });
 
