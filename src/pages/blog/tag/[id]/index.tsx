@@ -40,10 +40,24 @@ const Page: NextPage<PageProps> = (props) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => ({
-  fallback: 'blocking',
-  paths: [],
-});
+export const getStaticPaths: GetStaticPaths = async () => {
+  const tagList = await client.v1.tag.$get({
+    query: {
+      fields: `id,name`,
+    },
+  });
+
+  const tagNameList = tagList.contents.map((tag) => ({
+    params: {
+      id: `${tag.id}`,
+    },
+  }));
+
+  return {
+    fallback: 'blocking',
+    paths: tagNameList || [],
+  };
+};
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   const { params } = context;

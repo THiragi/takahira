@@ -13,6 +13,7 @@ type StaticProps = {
 };
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
+
 const Page: NextPage<PageProps> = (props) => {
   const { blogList } = props;
 
