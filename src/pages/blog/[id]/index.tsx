@@ -11,8 +11,8 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import { BlogResponse } from '../../../types/blog';
-import client from '../../../utils/api';
-import toStringId from '../../../utils/toStringId';
+import client from '../../../lib/api';
+import toStringId from '../../../lib/toStringId';
 
 type StaticProps = {
   blog: BlogResponse;
@@ -70,13 +70,13 @@ const Page: NextPage<PageProps> = (props) => {
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetStaticPaths = async () => {
-  const blogList = await client.v1.blog.$get({
+  const blogs = await client.v1.blog.$get({
     query: {
       fields: `id`,
     },
   });
 
-  const blogIdList = blogList.contents.map((blog) => ({
+  const blogIds = blogs.contents.map((blog) => ({
     params: {
       id: blog.id,
     },
@@ -84,7 +84,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     fallback: true,
-    paths: blogIdList || [],
+    paths: blogIds || [],
   };
 };
 

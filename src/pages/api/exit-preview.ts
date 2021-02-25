@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import client from '../../utils/api';
-import toStringId from '../../utils/toStringId';
+import client from '../../lib/api';
+import toStringId from '../../lib/toStringId';
 
 const exitPreview = async (
   req: NextApiRequest,

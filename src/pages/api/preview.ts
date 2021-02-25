@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import toStringId from '../../utils/toStringId';
-import client from '../../utils/api';
+import toStringId from '../../lib/toStringId';
+import client from '../../lib/api';
 
 const preview = async (
   req: NextApiRequest,
