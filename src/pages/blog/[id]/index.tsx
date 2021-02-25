@@ -69,10 +69,24 @@ const Page: NextPage<PageProps> = (props) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetStaticPaths = async () => ({
-  fallback: 'blocking',
-  paths: [],
-});
+export const getStaticPaths: GetStaticPaths = async () => {
+  const blogList = await client.v1.blog.$get({
+    query: {
+      fields: `id`,
+    },
+  });
+
+  const blogIdList = blogList.contents.map((blog) => ({
+    params: {
+      id: blog.id,
+    },
+  }));
+
+  return {
+    fallback: true,
+    paths: blogIdList || [],
+  };
+};
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   const { params, previewData } = context;

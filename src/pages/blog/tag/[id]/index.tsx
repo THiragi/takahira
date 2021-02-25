@@ -43,19 +43,19 @@ const Page: NextPage<PageProps> = (props) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const tagList = await client.v1.tag.$get({
     query: {
-      fields: `id,name`,
+      fields: `id`,
     },
   });
 
-  const tagNameList = tagList.contents.map((tag) => ({
+  const tagIdList = tagList.contents.map((tag) => ({
     params: {
       id: `${tag.id}`,
     },
   }));
 
   return {
-    fallback: 'blocking',
-    paths: tagNameList || [],
+    fallback: true,
+    paths: tagIdList || [],
   };
 };
 

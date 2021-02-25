@@ -36,11 +36,9 @@ const Page: NextPage<PageProps> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
-  const blogListPromise = client.v1.blog.$get({
+  const blogList = await client.v1.blog.$get({
     query: { fields: 'id,title' },
   });
-
-  const [blogList] = await Promise.all([blogListPromise]);
 
   return {
     props: { blogList },
