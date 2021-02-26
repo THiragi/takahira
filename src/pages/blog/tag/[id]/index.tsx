@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 import { BlogListResponse } from '../../../../types/blog';
 
-import client from '../../../../lib/api';
+import { getBlogsByTag } from '../../../../lib/api';
 
 type StaticProps = {
   blogList: BlogListResponse;
@@ -26,38 +26,28 @@ const Page: NextPage<PageProps> = (props) => {
     <main>
       <h1>Blog</h1>
       <section>
-        <ul>
-          {blogList.contents.map((blog) => (
-            <li key={blog.id}>
-              <Link href={`/blog/${blog.id}`}>
-                <a>{blog.title}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {blogList.contents.length ? (
+          <ul>
+            {blogList.contents.map((blog) => (
+              <li key={blog.id}>
+                <Link href={`/blog/${blog.id}`}>
+                  <a>{blog.title}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <h2>このタグの記事はありません</h2>
+        )}
       </section>
     </main>
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const tagList = await client.v1.tag.$get({
-    query: {
-      fields: `id`,
-    },
-  });
-
-  const tagIdList = tagList.contents.map((tag) => ({
-    params: {
-      id: `${tag.id}`,
-    },
-  }));
-
-  return {
-    fallback: true,
-    paths: tagIdList || [],
-  };
-};
+export const getStaticPaths: GetStaticPaths = async () => ({
+  fallback: 'blocking',
+  paths: [],
+});
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   const { params } = context;
@@ -66,23 +56,12 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
     throw new Error('Error: ID not found');
   }
 
-  try {
-    const blogListPromise = client.v1.blog.$get({
-      query: {
-        fields: 'id,title',
-        filters: `tags[contains]${params.id as string}`,
-      },
-    });
+  const blogList = await getBlogsByTag(params.id as string);
 
-    const [blogList] = await Promise.all([blogListPromise]);
-
-    return {
-      props: { blogList },
-      revalidate: 60,
-    };
-  } catch (e) {
-    return { notFound: true };
-  }
+  return {
+    props: { blogList },
+    revalidate: 60,
+  };
 };
 
 export default Page;

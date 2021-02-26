@@ -25,6 +25,24 @@ export const getAllBlogs = async () => {
   return blogList;
 };
 
+export const getAllTags = async () => {
+  const tagList = await client.v1.tag.$get({
+    query: { fields: `id,title` },
+  });
+
+  return tagList;
+};
+
+export const getBlogsByTag = async (id: string) => {
+  const blogList = await client.v1.blog.$get({
+    query: {
+      fields: 'id,title',
+      filters: `tags[contains]${id}`,
+    },
+  });
+
+  return blogList;
+};
 // export const getBlogData = async (paramsId: string | string[]) => {
 //   const id = toStringId(paramsId);
 //   const blog = await client.v1.blog._id(id).$get({
