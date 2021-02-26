@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import { BlogResponse } from '../../../types/blog';
-import client from '../../../lib/api';
+import client, { getAllBlogs } from '../../../lib/api';
 import toStringId from '../../../lib/toStringId';
 
 type StaticProps = {
@@ -70,17 +70,8 @@ const Page: NextPage<PageProps> = (props) => {
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetStaticPaths = async () => {
-  const blogs = await client.v1.blog.$get({
-    query: {
-      fields: `id`,
-    },
-  });
-
-  const blogIds = blogs.contents.map((blog) => ({
-    params: {
-      id: blog.id,
-    },
-  }));
+  const { contents } = await getAllBlogs();
+  const blogIds = contents.map((blog) => ({ params: { id: blog.id } }));
 
   return {
     fallback: true,
@@ -91,6 +82,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   const { params, previewData } = context;
 
+  console.log(context);
+  console.log(previewData);
   if (!params?.id) {
     throw new Error('Error: ID not found');
   }

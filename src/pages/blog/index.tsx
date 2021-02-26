@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import { BlogListResponse } from '../../types/blog';
 
-import client from '../../lib/api';
+import { getAllBlogs } from '../../lib/api';
 
 type StaticProps = {
   blogList: BlogListResponse;
@@ -36,9 +36,7 @@ const Page: NextPage<PageProps> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
-  const blogList = await client.v1.blog.$get({
-    query: { fields: 'id,title' },
-  });
+  const blogList = await getAllBlogs();
 
   return {
     props: { blogList },

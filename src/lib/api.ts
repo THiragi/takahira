@@ -16,3 +16,21 @@ const fetchConfig: Required<Parameters<typeof aspida>>[1] = {
 const client = api(aspida(fetch, fetchConfig));
 
 export default client;
+
+export const getAllBlogs = async () => {
+  const blogList = await client.v1.blog.$get({
+    query: { fields: 'id,title' },
+  });
+
+  return blogList;
+};
+
+// export const getBlogData = async (paramsId: string | string[]) => {
+//   const id = toStringId(paramsId);
+//   const blog = await client.v1.blog._id(id).$get({
+//     query: {
+//       fields: 'id,title,body,publishedAt,tags',
+//       ...draftKey,
+//     },
+//   });
+// };
