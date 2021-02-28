@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { GetStaticPropsContext } from 'next';
+import { ParsedUrlQuery } from 'querystring';
+
 import aspida from '@aspida/fetch';
 
 import api from '../api/$api';
-// import toStringId from './toStringId';
+import toStringId from './toStringId';
 
 const fetchConfig: Required<Parameters<typeof aspida>>[1] = {
   baseURL: process.env.MICRO_CMS_HOST,
@@ -43,12 +46,26 @@ export const getBlogsByTag = async (id: string) => {
 
   return blogList;
 };
-// export const getBlogData = async (paramsId: string | string[]) => {
-//   const id = toStringId(paramsId);
-//   const blog = await client.v1.blog._id(id).$get({
-//     query: {
-//       fields: 'id,title,body,publishedAt,tags',
-//       ...draftKey,
-//     },
-//   });
-// };
+
+export const getBlogData = async (
+  context: GetStaticPropsContext<ParsedUrlQuery>,
+) => {
+  const { params, previewData } = context;
+  if (!params?.id) {
+    throw new Error('Error: ID not found');
+  }
+
+  const id = toStringId(params.id);
+  const draftKey = previewData?.draftKey
+    ? { draftKey: previewData.draftKey }
+    : {};
+
+  const blog = await client.v1.blog._id(id).$get({
+    query: {
+      fields: 'id,title,body,publishedAt,tags',
+      ...draftKey,
+    },
+  });
+
+  return { blog, ...draftKey };
+};

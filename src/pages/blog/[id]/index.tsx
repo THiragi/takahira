@@ -11,8 +11,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import { BlogResponse } from '../../../types/blog';
-import client from '../../../lib/api';
-import toStringId from '../../../lib/toStringId';
+import { getBlogData } from '../../../lib/api';
 
 type StaticProps = {
   blog: BlogResponse;
@@ -75,32 +74,12 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 });
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
-  const { params, previewData } = context;
+  const blogData = await getBlogData(context);
 
-  if (!params?.id) {
-    throw new Error('Error: ID not found');
-  }
-
-  const id = toStringId(params.id);
-  const draftKey = previewData?.draftKey
-    ? { draftKey: previewData.draftKey }
-    : {};
-
-  try {
-    const blog = await client.v1.blog._id(id).$get({
-      query: {
-        fields: 'id,title,body,publishedAt,tags',
-        ...draftKey,
-      },
-    });
-
-    return {
-      props: { blog, ...draftKey },
-      revalidate: 60,
-    };
-  } catch (e) {
-    return { notFound: true };
-  }
+  return {
+    props: blogData,
+    revalidate: 60,
+  };
 };
 
 export default Page;

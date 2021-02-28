@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/require-await */
 import { NextApiRequest, NextApiResponse } from 'next';
-
 import client from '../../lib/api';
 import toStringId from '../../lib/toStringId';
 
@@ -8,13 +8,22 @@ const exitPreview = async (
   res: NextApiResponse,
 ): Promise<void> => {
   const id = toStringId(req.query.id);
-  const post = await client.v1.blog._id(id).$get({
-    query: { fields: 'id' },
-  });
 
-  res.clearPreviewData();
-  res.writeHead(307, { Location: post ? `/blog/${post.id}` : '/' });
-  res.end();
+  await client.v1.blog
+    ._id(id)
+    .$get({
+      query: { fields: 'id' },
+    })
+    .then((post) => {
+      res.clearPreviewData();
+      res.writeHead(307, { Location: `/blog/${post.id}` });
+      res.end();
+    })
+    .catch(() => {
+      res.clearPreviewData();
+      res.writeHead(307, { Location: '/' });
+      res.end();
+    });
 };
 
 export default exitPreview;
