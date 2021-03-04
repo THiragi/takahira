@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import { BlogResponse } from '../../../types/blog';
-import { getBlogData } from '../../../lib/blog';
+import { getPostData } from '../../../lib/blog';
 
 type StaticProps = {
   blog: BlogResponse;
@@ -62,10 +62,10 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 });
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
-  const blogData = await getBlogData(context);
+  const postData = await getPostData(context);
 
   return {
-    props: blogData,
+    props: postData,
     revalidate: 60,
   };
 };

@@ -7,15 +7,15 @@ import client from './api';
 
 import toStringId from './toStringId';
 
-export const getAllBlogs = async () => {
+export const getAllPosts = async () => {
   const blogList = await client.v1.blog.$get({
-    query: { fields: 'id,title' },
+    query: { fields: 'id,title,body,publishedAt' },
   });
 
   return blogList;
 };
 
-export const getBlogData = async (
+export const getPostData = async (
   context: GetStaticPropsContext<ParsedUrlQuery>,
 ) => {
   const { params, previewData } = context;
