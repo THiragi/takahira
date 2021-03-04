@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import { BlogListResponse } from '../../types/blog';
 
-import { getAllBlogs } from '../../lib/api';
+import { getAllBlogs } from '../../lib/blog';
 
 type StaticProps = {
   blogList: BlogListResponse;

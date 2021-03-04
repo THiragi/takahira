@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import { BlogResponse } from '../../../types/blog';
-import { getBlogData } from '../../../lib/api';
+import { getBlogData } from '../../../lib/blog';
 
 type StaticProps = {
   blog: BlogResponse;
@@ -45,18 +45,6 @@ const Page: NextPage<PageProps> = (props) => {
           <h1>{blog.title}</h1>
           <ul>
             <li>publishedAt: {blog.publishedAt}</li>
-            {blog.tags && blog.tags.length > 0 && (
-              <li>
-                tag:
-                <ul>
-                  {blog.tags.map((tag) => (
-                    <li key={tag.id}>
-                      <Link href={`/blog/tag/${tag.id}`}>{tag.name}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            )}
           </ul>
         </header>
         {blog.body && (
