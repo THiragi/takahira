@@ -1,21 +1,17 @@
 import React from 'react';
 
 import { NextPage } from 'next';
-import Link from 'next/link';
+// import Link from 'next/link';
 
-const Page: NextPage = () => (
-  <main>
-    <h1>Blog</h1>
+import Container from '../components/container';
+
+const Home: NextPage = () => (
+  <Container>
     <section>
-      <ul>
-        <li>
-          <Link href="/blog">
-            <a>BLOG</a>
-          </Link>
-        </li>
-      </ul>
+      <h1>Takahira</h1>
+      <p>まだBlogだけです...</p>
     </section>
-  </main>
+  </Container>
 );
 
-export default Page;
+export default Home;

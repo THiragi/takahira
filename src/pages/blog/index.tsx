@@ -7,6 +7,9 @@ import { BlogListResponse } from '../../types/blog';
 
 import { getAllPosts } from '../../lib/blog';
 
+import Header from '../../components/header';
+import Container from '../../components/container';
+
 type StaticProps = {
   posts: BlogListResponse;
 };
@@ -25,7 +28,8 @@ const Page: NextPage<PageProps> = ({ posts }) => {
     );
 
   return (
-    <main>
+    <Container title="blog - takahira">
+      <Header />
       <h1>Blog</h1>
       <section>
         <input
@@ -51,7 +55,7 @@ const Page: NextPage<PageProps> = ({ posts }) => {
           </ul>
         )}
       </section>
-    </main>
+    </Container>
   );
 };
 
