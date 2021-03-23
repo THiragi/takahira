@@ -1,4 +1,7 @@
-@import 'variables.css';
+:root {
+  --color-primary: #443e3c;
+  --letter-space: 0.2em;
+}
 
 html,
 body {
@@ -26,4 +29,15 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+input[type='text'] {
+  width: 100%;
+  height: 48px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }

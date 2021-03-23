@@ -1,6 +1,0 @@
-/* @import '../../styles/variables.css'; */
-
-.header {
-  max-width: var(--desktop-max-width);
-  margin: 0 auto;
-}

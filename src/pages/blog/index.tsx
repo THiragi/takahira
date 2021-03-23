@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import Link from 'next/link';
 
 import { BlogListResponse } from '../../types/blog';
 
@@ -9,6 +8,7 @@ import { getAllPosts } from '../../lib/blog';
 
 import Header from '../../components/header';
 import Container from '../../components/container';
+import BlogPost from '../../components/blogPost';
 
 type StaticProps = {
   posts: BlogListResponse;
@@ -28,34 +28,28 @@ const Page: NextPage<PageProps> = ({ posts }) => {
     );
 
   return (
-    <Container title="blog - takahira">
-      <Header />
-      <h1>Blog</h1>
-      <section>
-        <input
-          aria-label="Search Article"
-          type="text"
-          onChange={(e) => setSearchVal(e.target.value)}
-          placeholder="記事検索"
-        />
-        {!filteredPosts.length ? (
-          <h3>記事が見つかりません。</h3>
-        ) : (
-          <ul>
-            {filteredPosts.map((blog) => (
-              <li key={blog.id}>
-                <Link href={`/blog/${blog.id}`}>
-                  <a>{blog.title}</a>
-                </Link>
-                <ul>
-                  <li>{blog.publishedAt}</li>
-                </ul>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-    </Container>
+    <>
+      <Header title="blog" />
+      <Container title="blog - takahira">
+        <section>
+          <input
+            aria-label="Search Article"
+            type="text"
+            onChange={(e) => setSearchVal(e.target.value)}
+            placeholder="記事検索"
+          />
+          {!filteredPosts.length ? (
+            <h3>記事が見つかりません。</h3>
+          ) : (
+            <ul>
+              {filteredPosts.map((blog) => (
+                <BlogPost key={blog.id} post={blog} />
+              ))}
+            </ul>
+          )}
+        </section>
+      </Container>
+    </>
   );
 };
 
