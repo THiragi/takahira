@@ -30,7 +30,7 @@ const Page: NextPage<PageProps> = ({ posts }) => {
   return (
     <>
       <Header title="blog" />
-      <Container title="blog - takahira">
+      <Container title="blog">
         <section>
           <input
             aria-label="Search Article"
@@ -58,7 +58,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
 
   return {
     props: { posts },
-    revalidate: 60,
+    revalidate: 120,
   };
 };
 

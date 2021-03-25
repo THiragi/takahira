@@ -14,15 +14,16 @@ type Props = {
 
 const Container: React.FC<Props> = ({
   children,
-  title = 'takahira',
-  description = 'web developer',
+  title,
+  description = 'developer',
 }) => {
   const router = useRouter();
+  const titleText = title ? `${title} - takahira` : 'takahira - developer';
 
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{titleText}</title>
         <meta content={description} name="description" />
         <meta
           property="og:url"

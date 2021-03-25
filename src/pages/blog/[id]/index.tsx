@@ -46,9 +46,7 @@ const Page: NextPage<PageProps> = (props) => {
             <li>publishedAt: {blog.publishedAt}</li>
           </ul>
         </header>
-        {blog.body && (
-          <article dangerouslySetInnerHTML={{ __html: blog.body }} />
-        )}
+        {blog.body && <article>{blog.body}</article>}
       </main>
     </>
   );
@@ -65,7 +63,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
 
   return {
     props: postData,
-    revalidate: 60,
+    revalidate: 120,
   };
 };
 
