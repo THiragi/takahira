@@ -8,19 +8,28 @@ import {
 } from 'next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+// import Image from 'next/image';
+
+import renderToString from 'next-mdx-remote/render-to-string';
+import hydrate from 'next-mdx-remote/hydrate';
+import { MdxRemote } from 'next-mdx-remote/types';
 
 import { BlogResponse } from '../../../types/blog';
 import { getPostData } from '../../../lib/blog';
 
 type StaticProps = {
   blog: BlogResponse;
+  htmlContent: MdxRemote.Source;
   draftKey?: string;
 };
+
+const components: MdxRemote.Components = { Link };
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const Page: NextPage<PageProps> = (props) => {
-  const { blog, draftKey } = props;
+  const { blog, draftKey, htmlContent } = props;
+  const content = hydrate(htmlContent, { components });
   const router = useRouter();
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -37,7 +46,9 @@ const Page: NextPage<PageProps> = (props) => {
         </div>
       )}
       <nav>
-        <Link href="/">Home</Link>
+        <Link href="/">
+          <a>Home</a>
+        </Link>
       </nav>
       <main>
         <header>
@@ -46,7 +57,7 @@ const Page: NextPage<PageProps> = (props) => {
             <li>publishedAt: {blog.publishedAt}</li>
           </ul>
         </header>
-        {blog.body && <article>{blog.body}</article>}
+        {blog.body && <article>{content}</article>}
       </main>
     </>
   );
@@ -60,9 +71,10 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   const postData = await getPostData(context);
+  const htmlContent = await renderToString(postData.blog.body, { components });
 
   return {
-    props: postData,
+    props: { ...postData, htmlContent },
     revalidate: 120,
   };
 };
