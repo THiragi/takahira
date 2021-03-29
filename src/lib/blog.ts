@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import produce from 'immer';
+import markdownToHtml from './transpiler';
 
 import client from './api';
 
@@ -35,5 +37,11 @@ export const getPostData = async (
     },
   });
 
-  return { blog, ...draftKey };
+  const contentHtml = await markdownToHtml(blog.body);
+  const postData = produce(blog, (draft) => {
+    // eslint-disable-next-line no-param-reassign
+    draft.body = contentHtml.toString();
+  });
+
+  return { postData, ...draftKey };
 };
