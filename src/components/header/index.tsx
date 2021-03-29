@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 const Header: React.FC<{ title: string }> = ({ title }) => (
   <header className={styles.header}>
     <svg viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="350" height="350" fill="white" />
+      <rect width="350" height="350" fill="none" />
       <path
         fillRule="evenodd"
         clipRule="evenodd"
