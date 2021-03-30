@@ -12,6 +12,7 @@ import Image from 'next/image';
 import unified from 'unified';
 import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
+
 import CustomLink from '../../../components/customLink';
 
 import { BlogResponse } from '../../../types/blog';

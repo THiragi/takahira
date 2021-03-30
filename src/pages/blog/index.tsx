@@ -41,11 +41,7 @@ const Page: NextPage<PageProps> = ({ posts }) => {
           {!filteredPosts.length ? (
             <h3>記事が見つかりません。</h3>
           ) : (
-            <ul>
-              {filteredPosts.map((blog) => (
-                <BlogPost key={blog.id} post={blog} />
-              ))}
-            </ul>
+            filteredPosts.map((blog) => <BlogPost key={blog.id} post={blog} />)
           )}
         </section>
       </Container>

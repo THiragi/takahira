@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import React from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 import styles from './index.module.scss';
 
@@ -37,16 +37,6 @@ const Container: React.FC<Props> = ({
       </Head>
 
       <main className={styles.main}>{children}</main>
-      <nav>
-        <div>
-          <Link href="/">
-            <a>home</a>
-          </Link>
-          <Link href="/blog">
-            <a>blog</a>
-          </Link>
-        </div>
-      </nav>
     </>
   );
 };

@@ -1,10 +1,7 @@
 @import '../../styles/variables.scss';
 
 .main {
+  max-width: var(--max-width);
   padding: 32px;
   margin: 0 auto;
-
-  @include mq(sm) {
-    max-width: 375px;
-  }
 }
