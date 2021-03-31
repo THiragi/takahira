@@ -2,19 +2,29 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import produce from 'immer';
-import markdownToHtml from './transpiler';
+import { markdownToHtml, markdownToText } from './transpiler';
 
 import client from './api';
 
 import toStringId from './toStringId';
 
 export const getAllPosts = async () => {
-  const blogList = await client.v1.blog.$get({
+  const { contents } = await client.v1.blog.$get({
     query: { fields: 'id,title,body,publishedAt' },
   });
+  const allposts = contents.map((post) => {
+    const body = markdownToText(post.body);
+    const bodyLength = body.length <= 110;
+    const excerpt = bodyLength ? body : `${body.slice(0, 110)}...`;
 
-  return blogList;
+    return {
+      ...post,
+      body,
+      excerpt,
+    };
+  });
+
+  return allposts;
 };
 
 export const getPostData = async (
@@ -30,18 +40,20 @@ export const getPostData = async (
     ? { draftKey: previewData.draftKey }
     : {};
 
-  const blog = await client.v1.blog._id(id).$get({
+  const res = await client.v1.blog._id(id).$get({
     query: {
       fields: 'id,title,body,publishedAt',
       ...draftKey,
     },
   });
 
-  const contentHtml = await markdownToHtml(blog.body);
-  const postData = produce(blog, (draft) => {
-    // eslint-disable-next-line no-param-reassign
-    draft.body = contentHtml.toString();
-  });
+  const contentHtml = await markdownToHtml(res.body);
 
-  return { postData, ...draftKey };
+  const body = contentHtml.toString();
+  const postData = { ...res, body };
+
+  return {
+    postData,
+    ...draftKey,
+  };
 };

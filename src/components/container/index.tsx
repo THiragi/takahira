@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import React from 'react';
+import Header from '../header';
 // import Link from 'next/link';
 
 import styles from './index.module.scss';
@@ -21,7 +22,7 @@ const Container: React.FC<Props> = ({
   const titleText = title ? `${title} - takahira` : 'takahira - developer';
 
   return (
-    <>
+    <div className={styles.container}>
       <Head>
         <title>{titleText}</title>
         <meta content={description} name="description" />
@@ -35,9 +36,9 @@ const Container: React.FC<Props> = ({
         <meta property="og:description" content={description} />
         <meta property="og:title" content={title} />
       </Head>
-
-      <main className={styles.main}>{children}</main>
-    </>
+      <Header title={title} />
+      <main>{children}</main>
+    </div>
   );
 };
 

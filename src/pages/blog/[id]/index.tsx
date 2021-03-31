@@ -13,8 +13,9 @@ import unified from 'unified';
 import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
 
+import Container from '../../../components/container';
 import CustomLink from '../../../components/customLink';
-
+import Date from '../../../components/date';
 import { BlogResponse } from '../../../types/blog';
 import { getPostData } from '../../../lib/blog';
 
@@ -28,7 +29,7 @@ type StaticProps = {
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const processor = unified()
-  .use(rehypeParse)
+  .use(rehypeParse, { fragment: true })
   .use(rehypeReact, {
     createElement: React.createElement,
     components: {
@@ -55,22 +56,18 @@ const Page: NextPage<PageProps> = (props) => {
           </Link>
         </div>
       )}
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </nav>
-      <main className={styles.main}>
-        <header>
-          <h1>{postData.title}</h1>
-          <ul>
-            <li>publishedAt: {postData.publishedAt}</li>
-          </ul>
-        </header>
-        <article>
+      <Container title="blog">
+        <h1>{postData.title}</h1>
+        <Date dateString={postData.publishedAt} />
+        <article className={styles.content}>
           {processor.processSync(postData.body).result as React.ReactElement}
         </article>
-      </main>
+        <div>
+          <Link href="/blog">
+            <a>blog一覧へ戻る</a>
+          </Link>
+        </div>
+      </Container>
     </>
   );
 };

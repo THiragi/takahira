@@ -6,14 +6,23 @@ import rehypeStringify from 'rehype-stringify';
 import rehypeShiki from '@leafac/rehype-shiki';
 import * as shiki from 'shiki';
 
-const markdownToHtml = async (markdown: string) =>
+export const markdownToHtml = async (markdown: string) =>
   unified()
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypeShiki, {
-      highlighter: await shiki.getHighlighter({ theme: 'nord' }),
+      highlighter: await shiki.getHighlighter({
+        theme: 'nord',
+      }),
     })
     .use(rehypeStringify)
     .processSync(markdown);
 
-export default markdownToHtml;
+export const markdownToText = (markdown: string) =>
+  unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .processSync(markdown)
+    .toString()
+    .replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');

@@ -1,0 +1,17 @@
+.post {
+  margin: {
+    bottom: 64px;
+  }
+
+  a {
+    color: var(--color-primary);
+  }
+
+  a:hover {
+    color: var(--color-anchor);
+  }
+}
+
+.date {
+  font-size: 15px;
+}

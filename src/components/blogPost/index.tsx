@@ -4,25 +4,27 @@ import { BlogResponse } from '../../types/blog';
 
 import Date from '../date';
 
+import styles from './index.module.scss';
+
 type Props = {
   post: BlogResponse;
 };
 
 const BlogPost: React.FC<Props> = ({ post }) => {
-  const { id, publishedAt, title, body } = post;
+  const { id, publishedAt, title, excerpt } = post;
 
   return (
-    <Link href={`/blog/${id}`}>
-      <a>
-        <div>
-          <Date dateString={publishedAt} />
+    <div className={styles.post}>
+      <Link href={`/blog/${id}`}>
+        <a>
+          <div className={styles.date}>
+            <Date dateString={publishedAt} />
+          </div>
           <h4>{title}</h4>
-          <p>
-            {body.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '').slice(0, 50)}...
-          </p>
-        </div>
-      </a>
-    </Link>
+          <p>{excerpt}</p>
+        </a>
+      </Link>
+    </div>
   );
 };
 
