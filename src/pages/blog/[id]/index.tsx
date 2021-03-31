@@ -17,7 +17,7 @@ import Container from '../../../components/container';
 import CustomLink from '../../../components/customLink';
 import Date from '../../../components/date';
 import { BlogResponse } from '../../../types/blog';
-import { getPostData } from '../../../lib/blog';
+import { getAllPostIds, getPostData } from '../../../lib/blog';
 
 import styles from './index.module.scss';
 
@@ -73,10 +73,14 @@ const Page: NextPage<PageProps> = (props) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetStaticPaths = async () => ({
-  fallback: 'blocking',
-  paths: [],
-});
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await getAllPostIds();
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   const postData = await getPostData(context);

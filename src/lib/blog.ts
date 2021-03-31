@@ -27,6 +27,18 @@ export const getAllPosts = async () => {
   return allposts;
 };
 
+export const getAllPostIds = async () => {
+  const { contents } = await client.v1.blog.$get({
+    query: { fields: 'id' },
+  });
+
+  return contents.map((post) => ({
+    params: {
+      id: post.id,
+    },
+  }));
+};
+
 export const getPostData = async (
   context: GetStaticPropsContext<ParsedUrlQuery>,
 ) => {
