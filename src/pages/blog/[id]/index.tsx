@@ -62,7 +62,7 @@ const Page: NextPage<PageProps> = (props) => {
         <article className={styles.content}>
           {processor.processSync(postData.body).result as React.ReactElement}
         </article>
-        <div>
+        <div className={styles.toIndex}>
           <Link href="/blog">
             <a>blog一覧へ戻る</a>
           </Link>

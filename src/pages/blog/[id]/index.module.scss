@@ -1,5 +1,22 @@
 .content {
+  margin: 64px 0;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 64px 0 32px 0;
+  }
+
+  p {
+    margin: 32px 0;
+  }
+}
+
+.toIndex {
   margin: {
-    bottom: 64px;
+    bottom: 128px;
   }
 }
