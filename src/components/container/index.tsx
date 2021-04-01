@@ -35,6 +35,10 @@ const Container: React.FC<Props> = ({
         <meta property="og:site_name" content="takahira" />
         <meta property="og:description" content={description} />
         <meta property="og:title" content={title} />
+        <meta
+          property="og:image"
+          content="https://takahira.io/static/images/banner.png"
+        />
       </Head>
       <Header title={title} />
       <main>{children}</main>
