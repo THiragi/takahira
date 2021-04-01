@@ -63,9 +63,13 @@ const Page: NextPage<PageProps> = (props) => {
           {processor.processSync(postData.body).result as React.ReactElement}
         </article>
         <div className={styles.toIndex}>
-          <Link href="/blog">
-            <a>blog一覧へ戻る</a>
-          </Link>
+          {draftKey ? (
+            <p>blog一覧へ戻る</p>
+          ) : (
+            <Link href="/blog">
+              <a>blog一覧へ戻る</a>
+            </Link>
+          )}
         </div>
       </Container>
     </>
@@ -89,7 +93,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
     props: {
       ...postData,
     },
-    revalidate: 120,
+    // revalidate: 120,
   };
 };
 
