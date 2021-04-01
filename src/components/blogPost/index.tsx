@@ -20,7 +20,7 @@ const BlogPost: React.FC<Props> = ({ post }) => {
           <div className={styles.date}>
             <Date dateString={publishedAt} />
           </div>
-          <h4>{title}</h4>
+          <h1>{title}</h1>
           <p>{excerpt}</p>
         </a>
       </Link>

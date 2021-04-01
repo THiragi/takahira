@@ -1,7 +1,5 @@
 .post {
-  margin: {
-    bottom: 64px;
-  }
+  margin: 32px 0;
 
   a {
     color: var(--color-primary);
@@ -10,8 +8,24 @@
   a:hover {
     color: var(--color-anchor);
   }
+
+  h1 {
+    margin: 16px 0;
+  }
 }
 
 .date {
-  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.date::after {
+  flex-grow: 1;
+  width: 3em;
+  height: 1px;
+  content: '';
+  border-bottom: 1px solid;
+  margin: {
+    left: 0.5rem;
+  }
 }
