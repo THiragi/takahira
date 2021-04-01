@@ -11,7 +11,7 @@ const preview = async (
     req.query.secret !== process.env.MICRO_CMS_PREVIEW_SECRET ||
     !req.query.id
   ) {
-    return res.status(401).json({ message: 'Invalid token' });
+    return res.status(404).end();
   }
 
   const id = toStringId(req.query.id);
@@ -27,7 +27,7 @@ const preview = async (
     return res.status(401).json({ message: 'Invalid contentId' });
   }
 
-  res.setPreviewData({ ...post, draftKey });
+  res.setPreviewData({ id: post.id, draftKey });
   res.writeHead(307, { Location: `/blog/${post.id}` });
   res.end('Preview mode enabled');
 };
