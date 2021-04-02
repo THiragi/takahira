@@ -11,14 +11,12 @@ export const markdownToHtml = async (markdown: string) =>
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypeShiki, {
-      highlighter: await shiki.getHighlighter({
-        theme: 'nord',
-      }),
+      highlighter: await shiki.getHighlighter({}),
     })
     .use(rehypeStringify)
     .processSync(markdown);
 
-export const markdownToText = (markdown: string) =>
+export const markdownToText = (markdown: string): string =>
   unified()
     .use(remarkParse)
     .use(remarkRehype)
