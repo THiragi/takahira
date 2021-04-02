@@ -14,6 +14,10 @@
     margin: 32px 0;
   }
 
+  pre {
+    overflow: auto;
+  }
+
   :not(pre) > code {
     background-color: rgb(232, 237, 239);
     // color: rgb(186, 85, 133);
