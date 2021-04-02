@@ -54,15 +54,17 @@ export const getPostData = async (
 
   const res = await client.v1.blog._id(id).$get({
     query: {
-      fields: 'id,title,body,publishedAt',
+      fields: 'id,title,body,publishedAt,updatedAt',
       ...draftKey,
     },
   });
+  // `publishedAt`がundefinedの場合は`updateAt`の値を渡す
+  const publishedAt = res?.publishedAt ?? res.updatedAt;
 
   const contentHtml = await markdownToHtml(res.body);
 
   const body = contentHtml.toString();
-  const postData = { ...res, body };
+  const postData = { ...res, body, publishedAt };
 
   return {
     postData,

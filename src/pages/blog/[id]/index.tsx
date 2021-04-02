@@ -76,7 +76,6 @@ const Page: NextPage<PageProps> = (props) => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllPostIds();
 
