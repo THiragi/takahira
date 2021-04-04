@@ -3,16 +3,16 @@ import unified from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-// import rehypeShiki from '@leafac/rehype-shiki';
-// import * as shiki from 'shiki';
+import rehypeShiki from '@leafac/rehype-shiki';
+import * as shiki from 'shiki';
 
-export const markdownToHtml = (markdown: string) =>
+export const markdownToHtml = async (markdown: string) =>
   unified()
     .use(remarkParse)
     .use(remarkRehype)
-    // .use(rehypeShiki, {
-    //   highlighter: await shiki.getHighlighter({}),
-    // })
+    .use(rehypeShiki, {
+      highlighter: await shiki.getHighlighter({}),
+    })
     .use(rehypeStringify)
     .processSync(markdown);
 
