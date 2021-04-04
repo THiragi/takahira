@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
@@ -61,7 +60,7 @@ export const getPostData = async (
   // `publishedAt`がundefinedの場合は`updateAt`の値を渡す
   const publishedAt = res?.publishedAt ?? res.updatedAt;
 
-  const contentHtml = await markdownToHtml(res.body);
+  const contentHtml = markdownToHtml(res.body);
 
   const body = contentHtml.toString();
   const postData = { ...res, body, publishedAt };
