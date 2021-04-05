@@ -58,12 +58,12 @@ export const getPostData = async (
     },
   });
   // `publishedAt`がundefinedの場合は`updateAt`の値を渡す
-  // const publishedAt = res?.publishedAt ?? res.updatedAt;
+  const publishedAt = res?.publishedAt ?? res.updatedAt;
 
   const contentHtml = await markdownToHtml(res.body);
 
   const body = contentHtml.toString();
-  const postData = { ...res, body };
+  const postData = { ...res, body, publishedAt };
 
   return {
     postData,
