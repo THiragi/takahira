@@ -49,11 +49,13 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <>
       {draftKey && (
-        <div>
-          現在プレビューモードで閲覧中です。
-          <Link href={`/api/exit-preview?id=${postData.id}`}>
-            <a>プレビューを解除</a>
-          </Link>
+        <div className={styles.preview}>
+          <div className={styles.nav}>
+            <div>プレビューを表示中</div>
+            <Link href={`/api/exit-preview?id=${postData.id}`}>
+              <a>プレビュー解除</a>
+            </Link>
+          </div>
         </div>
       )}
       <Container title="blog">
