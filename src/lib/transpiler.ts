@@ -4,7 +4,9 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import rehypeShiki from '@leafac/rehype-shiki';
-import shiki from 'shiki';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const shiki = require('shiki');
 
 export const markdownToHtml = async (markdown: string) =>
   unified()
