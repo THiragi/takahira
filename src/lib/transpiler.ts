@@ -4,7 +4,7 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import rehypeShiki from '@leafac/rehype-shiki';
-import * as shiki from 'shiki';
+import shiki from 'shiki';
 
 export const markdownToHtml = async (markdown: string) =>
   unified()
@@ -12,7 +12,7 @@ export const markdownToHtml = async (markdown: string) =>
     .use(remarkRehype)
     .use(rehypeShiki, {
       highlighter: await shiki.getHighlighter({
-        theme: 'material-theme-palenight',
+        theme: 'nord',
       }),
     })
     .use(rehypeStringify)
