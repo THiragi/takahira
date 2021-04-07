@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-// import fs from 'fs';
-// import path from 'path';
+import fs from 'fs';
+import path from 'path';
 import unified from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
@@ -8,7 +8,11 @@ import rehypeStringify from 'rehype-stringify';
 import rehypeShiki from '@leafac/rehype-shiki';
 import * as shiki from 'shiki';
 
-// const shikiTheme = path.join(process.cwd(), 'src/lib/shiki-themes/nord.json');
+const shikiTheme = path.join(process.cwd(), 'src/lib/shiki/themes/nord.json');
+const languages = path.join(
+  process.cwd(),
+  'src/lib/shiki/languages/abap.tmLanguage.json',
+);
 
 export const markdownToHtml = async (markdown: string) =>
   unified()
@@ -16,7 +20,8 @@ export const markdownToHtml = async (markdown: string) =>
     .use(remarkRehype)
     .use(rehypeShiki, {
       highlighter: await shiki.getHighlighter({
-        theme: 'nord',
+        theme: JSON.parse(fs.readFileSync(shikiTheme, 'utf-8')),
+        langs: JSON.parse(fs.readFileSync(languages, 'utf-8')),
       }),
     })
     .use(rehypeStringify)
