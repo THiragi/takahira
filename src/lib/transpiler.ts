@@ -21,7 +21,13 @@ export const markdownToHtml = async (markdown: string) =>
     .use(rehypeShiki, {
       highlighter: await shiki.getHighlighter({
         theme: JSON.parse(fs.readFileSync(shikiTheme, 'utf-8')),
-        langs: JSON.parse(fs.readFileSync(languages, 'utf-8')),
+        langs: [
+          {
+            id: 'abap',
+            scopeName: 'source.abap',
+            path: languages,
+          },
+        ],
       }),
     })
     .use(rehypeStringify)
