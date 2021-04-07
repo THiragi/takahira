@@ -11,7 +11,9 @@ export const markdownToHtml = async (markdown: string) =>
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypeShiki, {
-      highlighter: await shiki.getHighlighter({}),
+      highlighter: await shiki.getHighlighter({
+        theme: 'material-theme-palenight',
+      }),
     })
     .use(rehypeStringify)
     .processSync(markdown);
