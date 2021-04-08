@@ -6,36 +6,36 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import rehypeShiki from '@leafac/rehype-shiki';
-import * as shiki from 'shiki';
+import { loadTheme, getHighlighter } from 'shiki';
 
-const t = shiki.loadTheme(
-  path.join(process.cwd(), 'src/lib/shiki/themes/nord.json'),
+const shikiDirectory = path.join(process.cwd(), 'src/lib/shiki');
+
+const theme = loadTheme(path.join(shikiDirectory, '/themes/nord.json'));
+
+const tsPath = path.join(
+  shikiDirectory,
+  '/languages/typescript.tmLanguage.json',
 );
+const tsxPath = path.join(shikiDirectory, '/languages/tsx.tmLanguage.json');
 
 export const markdownToHtml = async (markdown: string) =>
   unified()
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypeShiki, {
-      highlighter: await shiki.getHighlighter({
-        theme: await t,
+      highlighter: await getHighlighter({
+        theme: await theme,
         langs: [
           {
             id: 'typescript',
             scopeName: 'source.ts',
-            path: path.join(
-              process.cwd(),
-              'src/lib/shiki/languages/typescript.tmLanguage.json',
-            ),
+            path: tsPath,
             aliases: ['ts'],
           },
           {
             id: 'tsx',
             scopeName: 'source.tsx',
-            path: path.join(
-              process.cwd(),
-              'src/lib/shiki/languages/tsx.tmLanguage.json',
-            ),
+            path: tsxPath,
           },
         ],
       }),
