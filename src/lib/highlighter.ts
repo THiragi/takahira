@@ -6,9 +6,7 @@ const shikiDirectory = path.join(process.cwd(), 'src', 'data', 'shiki');
 
 const shikiLanguages = path.join(shikiDirectory, 'languages');
 
-type LangAliases = { [lang: string]: string[] };
-
-const getShikiLangs = (langAliases: LangAliases) => {
+const getShikiLangs = (langAliases: { [lang: string]: string[] } = {}) => {
   const allLangs = fs.readdirSync(shikiLanguages);
   const langs = allLangs.map((lang) => {
     const fullPath = path.join(shikiLanguages, lang);
@@ -32,4 +30,8 @@ export const shikiTheme = loadTheme(
   path.join(shikiDirectory, 'themes', 'nord.json'),
 );
 
-export const shikiLangs = getShikiLangs({ typescript: ['ts'] });
+const langAliases = {
+  typescript: ['ts'],
+};
+
+export const shikiLangs = getShikiLangs(langAliases);
