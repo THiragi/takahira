@@ -20,6 +20,7 @@ const Container: React.FC<Props> = ({
 }) => {
   const router = useRouter();
   const titleText = title ? `${title} - takahira` : 'takahira - developer';
+  const image = 'https://takahira.io/static/images/banner.png';
 
   return (
     <div className={styles.container}>
@@ -35,10 +36,12 @@ const Container: React.FC<Props> = ({
         <meta property="og:site_name" content="takahira" />
         <meta property="og:description" content={description} />
         <meta property="og:title" content={title} />
-        <meta
-          property="og:image"
-          content="https://takahira.io/static/images/banner.png"
-        />
+        <meta property="og:image" content={image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@leeerob" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
       </Head>
       <Header title={title} />
       <main>{children}</main>

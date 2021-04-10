@@ -57,7 +57,7 @@ const Page: NextPage<PageProps> = (props) => {
           </div>
         </div>
       )}
-      <Container title="blog">
+      <Container title={postData.title}>
         <h1>{postData.title}</h1>
         <Date dateString={postData.publishedAt} />
         <article className={styles.content}>
