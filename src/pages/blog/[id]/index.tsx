@@ -17,7 +17,7 @@ import Container from '../../../components/container';
 import CustomLink from '../../../components/customLink';
 import Date from '../../../components/date';
 import { BlogResponse } from '../../../types/blog';
-import { getAllPostIds, getPostData } from '../../../lib/blog';
+import { getPostData } from '../../../lib/blog';
 
 import styles from './index.module.scss';
 
@@ -40,7 +40,6 @@ const processor = unified()
 
 const Page: NextPage<PageProps> = (props) => {
   const { postData, draftKey } = props;
-  // const content = hydrate(htmlContent, { components });
   const router = useRouter();
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -49,11 +48,13 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <>
       {draftKey && (
-        <div>
-          現在プレビューモードで閲覧中です。
-          <Link href={`/api/exit-preview?id=${postData.id}`}>
-            <a>プレビューを解除</a>
-          </Link>
+        <div className={styles.preview}>
+          <div className={styles.nav}>
+            <div>プレビューを表示中</div>
+            <Link href={`/api/exit-preview?id=${postData.id}`}>
+              <a>プレビュー解除</a>
+            </Link>
+          </div>
         </div>
       )}
       <Container title="blog">
@@ -76,14 +77,11 @@ const Page: NextPage<PageProps> = (props) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getAllPostIds();
-
-  return {
-    paths,
-    fallback: true,
-  };
-};
+// eslint-disable-next-line @typescript-eslint/require-await
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: 'blocking',
+});
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   const postData = await getPostData(context);
@@ -92,7 +90,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
     props: {
       ...postData,
     },
-    // revalidate: 120,
+    revalidate: 60,
   };
 };
 

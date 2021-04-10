@@ -4,14 +4,18 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import rehypeShiki from '@leafac/rehype-shiki';
-import * as shiki from 'shiki';
+import { getHighlighter } from 'shiki';
+import { shikiTheme, shikiLangs } from './highlighter';
 
 export const markdownToHtml = async (markdown: string) =>
   unified()
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypeShiki, {
-      highlighter: await shiki.getHighlighter({}),
+      highlighter: await getHighlighter({
+        theme: await shikiTheme,
+        langs: shikiLangs,
+      }),
     })
     .use(rehypeStringify)
     .processSync(markdown);
