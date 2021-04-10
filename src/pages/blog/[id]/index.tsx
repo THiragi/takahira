@@ -40,7 +40,6 @@ const processor = unified()
 
 const Page: NextPage<PageProps> = (props) => {
   const { postData, draftKey } = props;
-  // const content = hydrate(htmlContent, { components });
   const router = useRouter();
   if (router.isFallback) {
     return <div>Loading...</div>;
