@@ -39,6 +39,7 @@ const getShikiLanguages = (
 
 const langAliases = {
   typescript: ['ts'],
+  shellscript: ['shell', 'bash', 'sh', 'zsh'],
 };
 
 export const shikiLangs = getShikiLanguages(langAliases);
