@@ -3,19 +3,30 @@ import path from 'path';
 import { loadTheme } from 'shiki';
 
 const shikiDirectory = path.join(process.cwd(), 'src', 'data', 'shiki');
-
+const shikiThemes = path.join(shikiDirectory, 'themes');
 const shikiLanguages = path.join(shikiDirectory, 'languages');
 
-const getShikiLangs = (langAliases: { [lang: string]: string[] } = {}) => {
+export const shikiTheme = loadTheme(path.join(shikiThemes, 'nord.json'));
+
+type ShikiLanguage = {
+  id: string;
+  scopeName: string;
+  path: string;
+  aliases?: string[];
+};
+
+const getShikiLanguages = (
+  langAliases: { [lang: string]: string[] } = {},
+): ShikiLanguage[] => {
   const allLangs = fs.readdirSync(shikiLanguages);
   const langs = allLangs.map((lang) => {
     const fullPath = path.join(shikiLanguages, lang);
     const fileContent = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
     const name: string = fileContent?.name ?? '';
-    const scopeName = fileContent?.scopeName ?? '';
+    const scope: string = fileContent?.scopeName ?? '';
     const langData = {
       id: name,
-      scopeName,
+      scopeName: scope,
       path: fullPath,
     };
     const isAliases = name in langAliases;
@@ -26,12 +37,8 @@ const getShikiLangs = (langAliases: { [lang: string]: string[] } = {}) => {
   return langs;
 };
 
-export const shikiTheme = loadTheme(
-  path.join(shikiDirectory, 'themes', 'nord.json'),
-);
-
 const langAliases = {
   typescript: ['ts'],
 };
 
-export const shikiLangs = getShikiLangs(langAliases);
+export const shikiLangs = getShikiLanguages(langAliases);
