@@ -1,5 +1,5 @@
 .post {
-  margin: 32px 0;
+  margin-top: 64px;
 
   a {
     color: var(--color-primary);
@@ -10,13 +10,16 @@
   }
 
   h1 {
-    margin: 16px 0;
+    margin: 24px 0;
   }
 }
 
 .date {
   display: flex;
   align-items: center;
+  font-family: var(--font-mono);
+  // color: var(--color-border);
+  // font-size: 0.rem;
 }
 
 .date::after {
