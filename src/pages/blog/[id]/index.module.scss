@@ -16,6 +16,11 @@
 
   pre {
     overflow: auto;
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
   }
 
   :not(pre) > code {
