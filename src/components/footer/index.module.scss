@@ -1,0 +1,12 @@
+.footer {
+  max-width: var(--max-width);
+  margin: 6em auto;
+
+  .copyright {
+    padding: 64px 0;
+    font-size: 0.8em;
+    color: rgb(184, 184, 184);
+    text-align: center;
+    border-top: 1px solid rgb(222, 222, 222);
+  }
+}

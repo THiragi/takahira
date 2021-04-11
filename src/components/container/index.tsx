@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 import React from 'react';
 import Header from '../header';
+import Footer from '../footer';
 // import Link from 'next/link';
 
 import styles from './index.module.scss';
@@ -45,6 +46,7 @@ const Container: React.FC<Props> = ({
       </Head>
       <Header title={title} />
       <main>{children}</main>
+      <Footer />
     </div>
   );
 };
