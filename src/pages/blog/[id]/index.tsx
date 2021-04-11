@@ -57,14 +57,13 @@ const Page: NextPage<PageProps> = (props) => {
         <article className={styles.content}>
           {processor.processSync(postData.body).result as React.ReactElement}
         </article>
+
         <div className={styles.toIndex}>
-          {draftKey ? (
-            <p>blog一覧へ戻る</p>
-          ) : (
-            <Link href="/blog">
-              <a>blog一覧へ戻る</a>
-            </Link>
-          )}
+          <Link
+            href={draftKey ? `/api/exit-preview?id=${postData.id}` : '/blog'}
+          >
+            <a>blog一覧へ戻る</a>
+          </Link>
         </div>
       </Container>
     </>
