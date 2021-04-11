@@ -6,8 +6,6 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from 'next';
-import ErrorPage from 'next/error';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import unified from 'unified';
@@ -40,11 +38,6 @@ const processor = unified()
 
 const Page: NextPage<PageProps> = (props) => {
   const { postData, draftKey } = props;
-  const router = useRouter();
-
-  if (!router.isFallback && !postData.id) {
-    return <ErrorPage statusCode={404} />;
-  }
 
   return (
     <>
@@ -59,29 +52,20 @@ const Page: NextPage<PageProps> = (props) => {
         </div>
       )}
       <Container title={postData.title}>
-        {router.isFallback ? (
-          <div>Loading...</div>
-        ) : (
-          <>
-            <h1>{postData.title}</h1>
-            <Date dateString={postData.publishedAt} />
-            <article className={styles.content}>
-              {
-                processor.processSync(postData.body)
-                  .result as React.ReactElement
-              }
-            </article>
-            <div className={styles.toIndex}>
-              {draftKey ? (
-                <p>blog一覧へ戻る</p>
-              ) : (
-                <Link href="/blog">
-                  <a>blog一覧へ戻る</a>
-                </Link>
-              )}
-            </div>
-          </>
-        )}
+        <h1>{postData.title}</h1>
+        <Date dateString={postData.publishedAt} />
+        <article className={styles.content}>
+          {processor.processSync(postData.body).result as React.ReactElement}
+        </article>
+        <div className={styles.toIndex}>
+          {draftKey ? (
+            <p>blog一覧へ戻る</p>
+          ) : (
+            <Link href="/blog">
+              <a>blog一覧へ戻る</a>
+            </Link>
+          )}
+        </div>
       </Container>
     </>
   );
