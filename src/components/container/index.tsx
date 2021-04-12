@@ -10,23 +10,24 @@ import styles from './index.module.scss';
 
 type Props = {
   children: React.ReactNode;
+  section?: string;
   title?: string;
   description?: string;
 };
 
 const Container: React.FC<Props> = ({
   children,
-  title,
+  section = 'takahira',
+  title = 'takahira - developer',
   description = 'developer',
 }) => {
   const router = useRouter();
-  const titleText = title ? `${title} - takahira` : 'takahira - developer';
   const image = 'https://takahira.io/static/images/banner.png';
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>{titleText}</title>
+        <title>{title}</title>
         <meta content={description} name="description" />
         <meta
           property="og:url"
@@ -44,7 +45,7 @@ const Container: React.FC<Props> = ({
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
       </Head>
-      <Header title={title} />
+      <Header section={section} />
       <main>{children}</main>
       <Footer />
     </div>

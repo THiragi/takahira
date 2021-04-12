@@ -29,7 +29,7 @@ const Page: NextPage<PageProps> = ({ posts }) => {
     );
 
   return (
-    <Container title="blog">
+    <Container section="blog" title="blog - takahira">
       <section>
         <input
           className={styles.search}
