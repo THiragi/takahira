@@ -19,7 +19,7 @@ const Container: React.FC<Props> = ({
   children,
   section = 'takahira',
   title = 'takahira - developer',
-  description = 'developer',
+  description = 'developer | creator | writer',
 }) => {
   const router = useRouter();
   const image = 'https://takahira.io/static/images/banner.png';
