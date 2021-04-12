@@ -61,12 +61,7 @@ const Page: NextPage<PageProps> = (props) => {
         <article className={styles.content}>
           {processor.processSync(postData.body).result as React.ReactElement}
         </article>
-        <a
-          href={`https://twiter.com/share?url=https://takahira.io/blog/${postData.id}`}
-          rel="nofollow"
-        >
-          リンクテキスト
-        </a>
+
         <div className={styles.toIndex}>
           <Link
             href={draftKey ? `/api/exit-preview?id=${postData.id}` : '/blog'}
