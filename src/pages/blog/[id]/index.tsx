@@ -38,6 +38,7 @@ const processor = unified()
 
 const Page: NextPage<PageProps> = (props) => {
   const { postData, draftKey } = props;
+  const encodedTitle = encodeURIComponent(`${postData.title} | takahira`);
 
   return (
     <>
@@ -61,7 +62,12 @@ const Page: NextPage<PageProps> = (props) => {
         <article className={styles.content}>
           {processor.processSync(postData.body).result as React.ReactElement}
         </article>
-
+        <a
+          href={`https://twitter.com/share?url=https://takahira.io/blog/${postData.id}/&text=${encodedTitle}&via=levelwood1`}
+          rel="nofollow"
+        >
+          Twitterでシェア
+        </a>
         <div className={styles.toIndex}>
           <Link
             href={draftKey ? `/api/exit-preview?id=${postData.id}` : '/blog'}
