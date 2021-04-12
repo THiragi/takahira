@@ -7,14 +7,20 @@ import client from './api';
 
 import toStringId from './toStringId';
 
+const getExcerpt = (content: string, length: number) => {
+  const contentLength = content.length <= length;
+  const excerpt = contentLength ? content : `${content.slice(0, length)}...`;
+
+  return excerpt;
+};
+
 export const getAllPosts = async () => {
   const { contents } = await client.v1.blog.$get({
     query: { fields: 'id,title,body,publishedAt' },
   });
   const allposts = contents.map((post) => {
     const body = markdownToText(post.body);
-    const bodyLength = body.length <= 110;
-    const excerpt = bodyLength ? body : `${body.slice(0, 110)}...`;
+    const excerpt = getExcerpt(body, 110);
 
     return {
       ...post,
@@ -61,9 +67,12 @@ export const getPostData = async (
   const publishedAt = res?.publishedAt ?? res.updatedAt;
 
   const contentHtml = await markdownToHtml(res.body);
-
   const body = contentHtml.toString();
-  const postData = { ...res, body, publishedAt };
+
+  const contentText = markdownToText(res.body);
+  const excerpt = getExcerpt(contentText, 110);
+
+  const postData = { ...res, body, excerpt, publishedAt };
 
   return {
     postData,

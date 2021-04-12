@@ -51,13 +51,22 @@ const Page: NextPage<PageProps> = (props) => {
           </div>
         </div>
       )}
-      <Container title={postData.title}>
+      <Container
+        section="blog"
+        title={`${postData.title} - takahira`}
+        description={postData.excerpt}
+      >
         <h1>{postData.title}</h1>
         <Date dateString={postData.publishedAt} />
         <article className={styles.content}>
           {processor.processSync(postData.body).result as React.ReactElement}
         </article>
-
+        <a
+          href={`https://twiter.com/share?url=https://takahira.io/blog/${postData.id}`}
+          rel="nofollow"
+        >
+          リンクテキスト
+        </a>
         <div className={styles.toIndex}>
           <Link
             href={draftKey ? `/api/exit-preview?id=${postData.id}` : '/blog'}
