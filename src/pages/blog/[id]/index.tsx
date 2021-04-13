@@ -67,7 +67,7 @@ const Page: NextPage<PageProps> = (props) => {
           <Link
             href={draftKey ? `/api/exit-preview?id=${postData.id}` : '/blog'}
           >
-            <a>blog一覧へ戻る</a>
+            <a>← blog一覧へ戻る</a>
           </Link>
         </div>
       </Container>
