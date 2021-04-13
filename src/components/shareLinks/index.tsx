@@ -8,6 +8,14 @@ type Props = {
 
 const ShareLinks: React.FC<Props> = ({ id, title }) => {
   const encodedTitle = encodeURIComponent(`${title} | takahira`);
+  const copyUrl = () => {
+    const el = document.createElement('input');
+    el.value = `https://takahira.io/blog/${id}`;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  };
 
   return (
     <div className={styles.share}>
@@ -16,18 +24,22 @@ const ShareLinks: React.FC<Props> = ({ id, title }) => {
         rel="nofollow"
       >
         <img
-          src="/static/images/socials/twitter/Twitter_social_icons-circle-white.png"
+          src="/static/images/socials/twitter/twitter-logo.png"
           alt="twitter"
-          className={styles.twitter}
         />
       </a>
-      <a>
+      <a
+        href={`http://www.facebook.com/share.php?u=https://takahira.io/blog/${id}/`}
+        rel="nofollow"
+      >
         <img
-          src="/static/images/socials/facebook/f_logo_RGB-White_58.png"
+          src="/static/images/socials/facebook/facebook-logo.png"
           alt="facebook"
-          className={styles.facebook}
         />
       </a>
+      <button type="button" onClick={() => copyUrl()}>
+        <img src="/static/images/socials/anchor-logo.png" alt="copy" />
+      </button>
     </div>
   );
 };
