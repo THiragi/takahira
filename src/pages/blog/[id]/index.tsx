@@ -57,19 +57,27 @@ const Page: NextPage<PageProps> = (props) => {
         title={`${postData.title} - takahira`}
         description={postData.excerpt}
       >
-        <h1>{postData.title}</h1>
-        <Date dateString={postData.publishedAt} />
-        <article className={styles.content}>
-          {processor.processSync(postData.body).result as React.ReactElement}
+        <article>
+          <header>
+            <h1 className={styles.title}>{postData.title}</h1>
+            <div className={styles.date}>
+              <Date dateString={postData.publishedAt} />
+            </div>
+          </header>
+          <div className={styles.content}>
+            {processor.processSync(postData.body).result as React.ReactElement}
+          </div>
+          {!draftKey && (
+            <footer>
+              <ShareLinks id={postData.id} title={postData.title} />
+              <div className={styles.toIndex}>
+                <Link href="/blog">
+                  <a>← blog一覧へ戻る</a>
+                </Link>
+              </div>
+            </footer>
+          )}
         </article>
-        <ShareLinks id={postData.id} title={postData.title} />
-        <div className={styles.toIndex}>
-          <Link
-            href={draftKey ? `/api/exit-preview?id=${postData.id}` : '/blog'}
-          >
-            <a>← blog一覧へ戻る</a>
-          </Link>
-        </div>
       </Container>
     </>
   );
