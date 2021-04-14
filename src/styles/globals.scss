@@ -1,6 +1,7 @@
 :root {
   --color-primary: rgb(64, 64, 64);
   --color-anchor: rgb(85, 162, 186);
+  --color-half: rgb(168, 168, 168);
   --color-border: rgb(96, 96, 96);
   --color-background: rgb(248, 248, 248);
   --letter-space: 0.4em;
@@ -34,9 +35,9 @@ a {
   text-decoration: none;
 }
 
-// a:hover {
-//   text-decoration: underline;
-// }
+a:hover {
+  text-decoration: underline;
+}
 
 * {
   box-sizing: border-box;
