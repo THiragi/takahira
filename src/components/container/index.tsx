@@ -28,12 +28,18 @@ const Container: React.FC<Props> = ({
     <div className={styles.container}>
       <Head>
         <title>{title}</title>
+        <meta lang="ja" />
         <meta content={description} name="description" />
         <meta
           property="og:url"
           content={`https://takahira.co${router.asPath}`}
         />
-        <link rel="canonical" href={`https://takahira.co${router.asPath}`} />
+        <link rel="canonical" href={`https://takahira.io${router.asPath}`} />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="takahira" />
         <meta property="og:description" content={description} />
@@ -44,6 +50,7 @@ const Container: React.FC<Props> = ({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
+        <meta name="theme-color" content="#404040" />
       </Head>
       <Header section={section} />
       <main>{children}</main>
