@@ -28,7 +28,6 @@ const Container: React.FC<Props> = ({
     <div className={styles.container}>
       <Head>
         <title>{title}</title>
-        <meta lang="ja" />
         <meta content={description} name="description" />
         <meta
           property="og:url"
