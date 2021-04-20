@@ -31,7 +31,7 @@ const Container: React.FC<Props> = ({
         <meta content={description} name="description" />
         <meta
           property="og:url"
-          content={`https://takahira.co${router.asPath}`}
+          content={`https://takahira.io${router.asPath}`}
         />
         <link rel="canonical" href={`https://takahira.io${router.asPath}`} />
         <link
