@@ -5,7 +5,6 @@ import client from '../../lib/api';
 const preview = async (
   req: NextApiRequest,
   res: NextApiResponse,
-  // eslint-disable-next-line consistent-return
 ): Promise<void> => {
   if (
     req.query.secret !== process.env.MICRO_CMS_PREVIEW_SECRET ||
@@ -27,9 +26,10 @@ const preview = async (
     return res.status(401).json({ message: 'Invalid contentId' });
   }
 
-  res.setPreviewData({ id: post.id, draftKey });
-  res.writeHead(307, { Location: `/blog/${post.id}` });
-  res.end('Preview mode enabled');
+  return res
+    .setPreviewData({ id: post.id, draftKey })
+    .writeHead(307, { Location: `/blog/${post.id}` })
+    .end('Preview mode enabled');
 };
 
 export default preview;
