@@ -7,10 +7,10 @@ const CustomLink = ({
   children: string;
   href: string;
 }): JSX.Element =>
-  // If the link is local it will start with a "/"
-  // Otherwise it'll be something like "https://"
+  // "/"で始まるhrefはサイト内リンク、
+  // それ以外の"https://"などのhrefは外部リンクと見做す。
   href.startsWith('/') || href === '' ? (
-    <Link href={href}>
+    <Link href={href} prefetch={false}>
       <a>{children}</a>
     </Link>
   ) : (
