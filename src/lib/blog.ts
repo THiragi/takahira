@@ -44,6 +44,10 @@ export const getAllPostIds = async () => {
   }));
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isDraft = (item: any): item is { draftKey: string } =>
+  !!(item.draftKey && typeof item.draftKey === 'string');
+
 export const getPostData = async (
   context: GetStaticPropsContext<ParsedUrlQuery>,
 ) => {
@@ -53,7 +57,7 @@ export const getPostData = async (
   }
 
   const id = toStringId(params.id);
-  const draftKey = previewData?.draftKey
+  const draftKey = isDraft(previewData)
     ? { draftKey: previewData.draftKey }
     : {};
 
