@@ -36,7 +36,7 @@ const Page: NextPage<PageProps> = ({ posts }) => {
           aria-label="Search Article"
           type="text"
           onChange={(e) => setSearchVal(e.target.value)}
-          placeholder="記事を探す"
+          placeholder="読みたい話題で探す"
         />
         {!filteredPosts.length ? (
           <h3>記事が見つかりません。</h3>
