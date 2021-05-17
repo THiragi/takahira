@@ -17,7 +17,7 @@ const Nav: React.VFC = () => (
           </Link>
         </li>
         <li>
-          <Link href="/blog">
+          <Link href="/blog" prefetch={false}>
             <a>blog</a>
           </Link>
         </li>

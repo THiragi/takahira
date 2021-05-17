@@ -15,7 +15,7 @@ const BlogPost: React.VFC<Props> = ({ post }) => {
 
   return (
     <div className={styles.post}>
-      <Link href={`/blog/${id}`}>
+      <Link href={`/blog/${id}`} prefetch={false}>
         <a>
           <div className={styles.date}>
             <Date dateString={publishedAt} dateFormat="yyyy.LL.dd" />
