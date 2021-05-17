@@ -2,7 +2,9 @@ import React from 'react';
 
 import { parseISO, format } from 'date-fns';
 
-const Date = ({ dateString }: { dateString: string }): JSX.Element => {
+type Props = { dateString: string };
+
+const Date: React.VFC<Props> = ({ dateString }) => {
   const date = parseISO(dateString);
 
   return <time dateTime={dateString}>{format(date, 'yyyy.LL.dd')}</time>;

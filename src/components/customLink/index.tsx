@@ -1,12 +1,12 @@
+import React from 'react';
 import Link from 'next/link';
 
-const CustomLink = ({
-  children,
-  href,
-}: {
+type Props = {
   children: string;
   href: string;
-}): JSX.Element =>
+};
+
+const CustomLink: React.VFC<Props> = ({ children, href }) =>
   // "/"で始まるhrefはサイト内リンク、
   // それ以外の"https://"などのhrefは外部リンクと見做す。
   href.startsWith('/') || href === '' ? (

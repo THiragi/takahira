@@ -10,7 +10,7 @@ type Props = {
   post: BlogResponse;
 };
 
-const BlogPost: React.FC<Props> = ({ post }) => {
+const BlogPost: React.VFC<Props> = ({ post }) => {
   const { id, publishedAt, title, excerpt } = post;
 
   return (
