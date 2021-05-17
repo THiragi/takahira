@@ -18,7 +18,7 @@ const BlogPost: React.VFC<Props> = ({ post }) => {
       <Link href={`/blog/${id}`}>
         <a>
           <div className={styles.date}>
-            <Date dateString={publishedAt} />
+            <Date dateString={publishedAt} dateFormat="yyyy.LL.dd" />
           </div>
           <h1>{title}</h1>
           <p>{excerpt}</p>

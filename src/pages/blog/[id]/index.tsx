@@ -61,7 +61,8 @@ const Page: NextPage<PageProps> = (props) => {
           <header>
             <h1 className={styles.title}>{postData.title}</h1>
             <div className={styles.date}>
-              published at <Date dateString={postData.publishedAt} />
+              published at{' '}
+              <Date dateString={postData.publishedAt} dateFormat="yyyy.LL.dd" />
             </div>
           </header>
           <div className={styles.content}>
