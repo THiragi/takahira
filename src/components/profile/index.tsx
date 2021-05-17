@@ -3,16 +3,16 @@ import Image from 'next/image';
 import styles from './index.module.scss';
 
 const Profile: React.VFC = () => (
-  <div className={styles.profile}>
+  <section className={styles.profile}>
     <Image
       alt="portrait"
-      src="/static/images/profile.jpg"
-      height={48}
-      width={48}
+      src="/static/images/profile.png"
+      height={120}
+      width={120}
     />
     <h1>takahira</h1>
-    <p>関数型プログラミングが好きです。</p>
-  </div>
+    <p>Web上で動くあれこれを作ってます。</p>
+  </section>
 );
 
 export default Profile;
