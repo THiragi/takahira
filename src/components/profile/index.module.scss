@@ -1,8 +1,40 @@
-.profile {
-  width: 100%;
-  text-align: center;
+.card {
+  // padding: 3rem;
+  // background-color: var(--color-half);
 
-  img {
-    border-radius: 50%;
+  .profile {
+    display: flex;
+    justify-content: space-evenly;
+
+    .portrait {
+      border-radius: 50%;
+    }
+
+    .info {
+      max-width: 540px;
+
+      .socials {
+        a {
+          display: inline-block;
+          width: 32px;
+          height: 32px;
+          margin-right: 20px;
+          // padding: 0;
+          line-height: 32px;
+          text-align: center;
+
+          // cursor: pointer;
+          svg {
+            width: 32px;
+            // height: 36px;
+            fill: var(--color-half);
+
+            &:hover {
+              fill: var(--color-primary);
+            }
+          }
+        }
+      }
+    }
   }
 }
