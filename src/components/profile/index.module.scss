@@ -2,7 +2,7 @@
 
 .card {
   padding: 4rem 0;
-  border-bottom: 1px solid rgb(222, 222, 222);
+  border-bottom: 1px solid var(--color-quarter);
 
   .profile {
     @include mq(md) {
