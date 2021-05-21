@@ -1,29 +1,37 @@
+@import '../../styles/variables.scss';
+
 .card {
-  // padding: 3rem;
-  // background-color: var(--color-half);
+  padding: 4rem 0;
+  border-bottom: 1px solid rgb(222, 222, 222);
 
   .profile {
-    display: flex;
-    justify-content: space-evenly;
+    @include mq(md) {
+      display: flex;
+      justify-content: space-evenly;
+      text-align: left;
+    }
+
+    text-align: center;
 
     .portrait {
       border-radius: 50%;
     }
 
     .info {
-      max-width: 540px;
+      font-size: 0.9em;
 
       .socials {
         a {
           display: inline-block;
           width: 32px;
           height: 32px;
-          margin-right: 20px;
-          // padding: 0;
           line-height: 32px;
           text-align: center;
 
-          // cursor: pointer;
+          &:not(:last-child) {
+            margin-right: 20px;
+          }
+
           svg {
             width: 32px;
             // height: 36px;

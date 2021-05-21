@@ -5,17 +5,20 @@ import styles from './index.module.scss';
 const Profile: React.VFC = () => (
   <div className={styles.card}>
     <div className={styles.profile}>
-      <Image
-        alt="portrait"
-        src="/static/images/profile.png"
-        height={168}
-        width={168}
-        className={styles.portrait}
-      />
+      <div>
+        <Image
+          alt="portrait"
+          src="/static/images/profile.png"
+          height={164}
+          width={164}
+          className={styles.portrait}
+        />
+      </div>
 
       <div className={styles.info}>
         <h2>takahira</h2>
-        <p>デザインと音楽と関数型プログラミングが好きです。</p>
+        <p>デザインと関数型プログラミングが好きです。</p>
+
         <div className={styles.socials}>
           <a
             href="https://twitter.com/levelwood1"

@@ -16,6 +16,7 @@ import Container from '../../../components/container';
 import CustomLink from '../../../components/customLink';
 import Date from '../../../components/date';
 import ShareLinks from '../../../components/shareLinks';
+import Profile from '../../../components/profile';
 import { BlogResponse } from '../../../types/blog';
 
 import styles from './index.module.scss';
@@ -68,17 +69,9 @@ const Page: NextPage<PageProps> = (props) => {
           <div className={styles.content}>
             {processor.processSync(postData.body).result as React.ReactElement}
           </div>
-          {!draftKey && (
-            <footer>
-              <ShareLinks id={postData.id} title={postData.title} />
-              <div className={styles.toIndex}>
-                <Link href="/blog">
-                  <a>← blog一覧へ戻る</a>
-                </Link>
-              </div>
-            </footer>
-          )}
         </article>
+        <ShareLinks id={postData.id} title={postData.title} />
+        <Profile />
       </Container>
     </>
   );
