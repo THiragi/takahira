@@ -1,27 +1,33 @@
 .share {
-  margin: 96px 0;
+  padding: 64px 0;
   text-align: center;
+  border-bottom: 1px solid rgb(222, 222, 222);
+
+  button {
+    padding: 0;
+    cursor: pointer;
+  }
 
   a,
   button {
     display: inline-block;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    margin: 0 20px;
-    line-height: 40px;
-    text-align: center;
-    cursor: pointer;
-    background-color: var(--color-primary);
-    border-width: 0;
-    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    margin: 0 16px;
+    background-color: #fff;
+    // border: 1px solid rgb(222, 222, 222);
+    // border-radius: 50%;
 
-    img {
-      height: 40px;
+    svg {
+      width: 48px;
+      height: 48px;
     }
 
     &:hover {
-      background-color: var(--color-half);
+      // svg {
+      //   fill: var(--color-primary);
+      // }
+      background-color: rgb(222, 222, 222);
     }
   }
 }
