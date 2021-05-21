@@ -1,6 +1,8 @@
+@import '../../styles/variables.scss';
 
 .share {
   padding: 64px 0;
+  margin-bottom: 64px;
   text-align: center;
   border-bottom: 1px solid var(--color-quarter);
 
@@ -21,7 +23,11 @@
     box-shadow: 0 2px 5px -2px var(--color-shade);
 
     &:not(:last-child) {
-      margin-right: calc(var(--circle-size) / 2);
+      @include mq(md) {
+        margin-right: calc(var(--circle-size) / 2);
+      }
+
+      margin-right: calc(var(--circle-size) / 4);
     }
 
     &:hover {

@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .navbar {
   position: fixed;
   bottom: 0;
@@ -24,8 +26,11 @@
         font-size: 1rem;
         line-height: 5rem;
         text-align: center;
-        text-indent: var(--letter-space);
-        letter-spacing: var(--letter-space);
+
+        @include mq(md) {
+          text-indent: var(--letter-space);
+          letter-spacing: var(--letter-space);
+        }
 
         a {
           display: block;

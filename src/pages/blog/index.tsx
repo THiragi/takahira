@@ -9,8 +9,6 @@ import { getAllPosts } from '../../lib/blog';
 import Container from '../../components/container';
 import BlogPost from '../../components/blogPost';
 
-import styles from './index.module.scss';
-
 type StaticProps = {
   posts: BlogResponse[];
 };
@@ -32,7 +30,6 @@ const Page: NextPage<PageProps> = ({ posts }) => {
     <Container section="blog" title="blog - takahira">
       <section>
         <input
-          className={styles.search}
           aria-label="Search Article"
           type="text"
           onChange={(e) => setSearchVal(e.target.value)}

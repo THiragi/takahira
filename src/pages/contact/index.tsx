@@ -2,11 +2,12 @@ import React from 'react';
 import { NextPage } from 'next';
 
 import Container from '../../components/container';
-import Profile from '../../components/profile';
+
+import ContactInfo from '../../components/contactInfo';
 
 const Contact: NextPage = () => (
   <Container section="contact" title="contact - takahira">
-    <Profile />
+    <ContactInfo />
   </Container>
 );
 

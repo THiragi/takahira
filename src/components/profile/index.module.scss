@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .card {
-  padding: 4rem 0;
+  padding-bottom: 4em;
   border-bottom: 1px solid var(--color-quarter);
 
   .profile {
@@ -19,30 +19,6 @@
 
     .info {
       font-size: 0.9em;
-
-      .socials {
-        a {
-          display: inline-block;
-          width: 32px;
-          height: 32px;
-          line-height: 32px;
-          text-align: center;
-
-          &:not(:last-child) {
-            margin-right: 20px;
-          }
-
-          svg {
-            width: 32px;
-            // height: 36px;
-            fill: var(--color-half);
-
-            &:hover {
-              fill: var(--color-primary);
-            }
-          }
-        }
-      }
     }
   }
 }
