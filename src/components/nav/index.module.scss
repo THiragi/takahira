@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 99;
+  z-index: 1;
   width: 100%;
   height: 5rem;
   padding: 0;
@@ -24,16 +24,17 @@
         font-size: 1rem;
         line-height: 5rem;
         text-align: center;
+        text-indent: var(--letter-space);
         letter-spacing: var(--letter-space);
 
         a {
           display: block;
           color: var(--color-primary);
-        }
 
-        a:hover {
-          color: var(--color-half);
-          text-decoration: none;
+          &:hover {
+            color: var(--color-half);
+            text-decoration: none;
+          }
         }
       }
     }

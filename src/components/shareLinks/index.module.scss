@@ -1,33 +1,37 @@
+
 .share {
   padding: 64px 0;
   text-align: center;
-  border-bottom: 1px solid rgb(222, 222, 222);
+  border-bottom: 1px solid var(--color-quarter);
 
   button {
-    padding: 0;
     cursor: pointer;
   }
 
   a,
   button {
     display: inline-block;
-    width: 48px;
-    height: 48px;
-    margin: 0 16px;
+    width: var(--circle-size);
+    height: var(--circle-size);
+    padding: calc(var(--circle-size) / 4);
+    text-align: center;
     background-color: #fff;
-    // border: 1px solid rgb(222, 222, 222);
-    // border-radius: 50%;
+    border: 1px solid var(--color-quarter);
+    border-radius: 50%;
+    box-shadow: 0 2px 5px -2px var(--color-shade);
 
-    svg {
-      width: 48px;
-      height: 48px;
+    &:not(:last-child) {
+      margin-right: calc(var(--circle-size) / 2);
     }
 
     &:hover {
+      background-color: var(--color-background);
+
       // svg {
       //   fill: var(--color-primary);
       // }
-      background-color: rgb(222, 222, 222);
+
+      box-shadow: none;
     }
   }
 }

@@ -30,9 +30,9 @@ const ShareLinks: React.FC<Props> = ({ id, title }) => {
         title="記事をツイート"
       >
         <svg
-          width="64"
-          height="64"
           viewBox="0 0 64 64"
+          width="32"
+          height="32"
           fill="rgb(29, 161, 242)"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -58,24 +58,24 @@ const ShareLinks: React.FC<Props> = ({ id, title }) => {
         title="Facebookでシェア"
       >
         <svg
-          width="64"
-          height="64"
           viewBox="0 0 64 64"
+          width="32"
+          height="32"
           fill="rgb(24, 119, 242)"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
             fillRule="evenodd"
             clipRule="evenodd"
-            d="M0 32.1787C0 48.088 11.5547 61.3173 26.6667 64V40.888H18.6667V32H26.6667V24.888C26.6667 16.888 31.8213 12.4453 39.112 12.4453C41.4213 12.4453 43.912 12.8 46.2213 13.1547V21.3333H42.1333C38.2213 21.3333 37.3333 23.288 37.3333 25.7787V32H45.8667L44.4453 40.888H37.3333V64C52.4453 61.3173 64 48.0907 64 32.1787C64 14.48 49.6 0 32 0C14.4 0 0 14.48 0 32.1787Z"
+            d="M0 32.1787C0 48.088 11.888 60.8173 27 63.5V41H19V32H27V25C27 17 31.8213 12.4453 39.112 12.4453C41.4213 12.4453 43.912 12.8 46.2213 13.1547V21H42C38.088 21 37 23.5093 37 26V32H45.8667L44.4453 40.888H37V63.5C52.112 60.8173 64 48.0907 64 32.1787C64 14.48 49.6 0 32 0C14.4 0 0 14.48 0 32.1787Z"
           />
         </svg>
       </a>
       <button type="button" onClick={() => copyUrl()} title="URLをコピー">
         <svg
-          width="64"
-          height="64"
           viewBox="0 0 64 64"
+          width="32"
+          height="32"
           fill="rgb(194,196,200)"
           xmlns="http://www.w3.org/2000/svg"
         >
