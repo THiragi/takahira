@@ -6,20 +6,18 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
 import unified from 'unified';
 import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
 import { getPostData } from '../../../lib/blog';
+import Article from '../../../components/article';
 import Container from '../../../components/container';
 import CustomLink from '../../../components/customLink';
-import Date from '../../../components/date';
+import DraftHeader from '../../../components/draftHeader';
 import ShareLinks from '../../../components/shareLinks';
 import Profile from '../../../components/profile';
 import { BlogResponse } from '../../../types/blog';
-
-import styles from './index.module.scss';
 
 type StaticProps = {
   postData: BlogResponse;
@@ -43,33 +41,15 @@ const Page: NextPage<PageProps> = (props) => {
 
   return (
     <>
-      {draftKey && (
-        <div className={styles.preview}>
-          <div className={styles.nav}>
-            <div>プレビューを表示中</div>
-            <Link href={`/api/exit-preview?id=${postData.id}`}>
-              <a>プレビュー解除</a>
-            </Link>
-          </div>
-        </div>
-      )}
+      {draftKey && <DraftHeader id={postData.id} />}
       <Container
         section="blog"
         title={`${postData.title} - takahira`}
         description={postData.excerpt}
       >
-        <article>
-          <header>
-            <h1 className={styles.title}>{postData.title}</h1>
-            <div className={styles.date}>
-              published at{' '}
-              <Date dateString={postData.publishedAt} dateFormat="yyyy.LL.dd" />
-            </div>
-          </header>
-          <div className={styles.content}>
-            {processor.processSync(postData.body).result as React.ReactElement}
-          </div>
-        </article>
+        <Article postData={postData}>
+          {processor.processSync(postData.body).result as React.ReactElement}
+        </Article>
         <ShareLinks id={postData.id} title={postData.title} />
         <Profile />
       </Container>
