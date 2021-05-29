@@ -7,6 +7,8 @@ import rehypeShiki from '@leafac/rehype-shiki';
 import { getHighlighter } from 'shiki';
 import { shikiTheme, shikiLangs } from './highlighter';
 
+console.log(shikiLangs);
+
 export const markdownToHtml = async (markdown: string) =>
   unified()
     .use(remarkParse)
