@@ -6,7 +6,6 @@ const shikiDir = path.join(process.cwd(), 'src', 'data', 'shiki');
 const shikiThemesDir = path.join(shikiDir, 'themes');
 const shikiLangsDir = path.join(shikiDir, 'languages');
 
-console.log(path.join(shikiThemesDir, 'nord.json'));
 export const shikiTheme = loadTheme(path.join(shikiThemesDir, 'nord.json'));
 
 type ShikiLang = {
