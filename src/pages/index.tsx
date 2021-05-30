@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Container from '../components/container';
 
 const Home: NextPage = () => (
-  <Container>
+  <Container section="home">
     <section style={{ textAlign: 'center' }}>
       <p>このページは現在制作中です😌</p>
       <p>

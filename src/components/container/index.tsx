@@ -16,7 +16,7 @@ type Props = {
 
 const Container: React.FC<Props> = ({
   children,
-  section = 'takahira',
+  section,
   title = 'takahira - developer',
   description = 'developer | creator | writer',
 }) => {
@@ -51,7 +51,7 @@ const Container: React.FC<Props> = ({
           <meta name="twitter:image" content={image} />
           <meta name="theme-color" content="#404040" />
         </Head>
-        <Header section={section} />
+        {section && <Header section={section} />}
         <main>{children}</main>
         <Footer />
       </div>
