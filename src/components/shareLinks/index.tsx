@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './index.module.scss';
 
 type Props = {
@@ -7,15 +7,18 @@ type Props = {
 };
 
 const ShareLinks: React.FC<Props> = ({ id, title }) => {
+  const [open, setOpen] = useState<boolean>(false);
   const encodedTitle = encodeURIComponent(`${title} | takahira`);
 
   // 表示している記事のURLをコピー
   const copyUrl = async () => {
     try {
       await navigator.clipboard.writeText(`https://takahira.io/blog/${id}`);
-      alert('Copied!');
+      setOpen(true);
     } catch (error) {
-      alert('Error!');
+      throw new Error(error);
+    } finally {
+      setTimeout(() => setOpen(false), 3000);
     }
   };
 
@@ -69,7 +72,12 @@ const ShareLinks: React.FC<Props> = ({ id, title }) => {
           />
         </svg>
       </a>
-      <button type="button" onClick={copyUrl} className={styles.tooltip}>
+      <button
+        type="button"
+        onClick={copyUrl}
+        className={styles.tooltip}
+        title="URLをコピー"
+      >
         <svg
           viewBox="0 0 64 64"
           width="32"
@@ -88,7 +96,15 @@ const ShareLinks: React.FC<Props> = ({ id, title }) => {
             d="M52.6924 18.1543H46.2821C44.2996 18.1543 42.6924 16.5471 42.6924 14.5645V8.15386H21.9231V45.077H52.6924V18.1543ZM44.0908 2C45.1114 2 46.0953 2.3804 46.8505 3.06691L57.5034 12.7514C58.3587 13.5289 58.8463 14.6312 58.8463 15.7871V47.1283C58.8463 49.3941 57.0095 51.2309 54.7437 51.2309H19.8719C17.6061 51.2309 15.7693 49.3941 15.7693 47.1283V6.10257C15.7693 3.83679 17.6061 2 19.8719 2H44.0908Z"
           />
         </svg>
-        <span className={styles.tooltipText}>Copied</span>
+        <span
+          style={{
+            opacity: open ? 1 : 0,
+            visibility: open ? 'visible' : 'hidden',
+          }}
+          className={styles.tooltipText}
+        >
+          Copied!
+        </span>
       </button>
     </div>
   );

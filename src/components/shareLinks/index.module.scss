@@ -43,7 +43,7 @@
 
 .tooltipText {
   position: absolute; /* 絶対配置 */
-  bottom: -30px; /* 親要素下からの位置 */
+  top: -40px; /* 親要素下からの位置 */
   left: 50%; /* 親に対して中央配置 */
   display: inline-block;
   padding: 5px; /* 余白 */
@@ -51,10 +51,8 @@
   line-height: 1.3; /* 行間 */
   color: #fff; /* 文字色 */
   white-space: nowrap; /* テキストを折り返さない */
-  visibility: hidden; /* はじめは隠しておく */
   background: #333; /* 背景色 */
   border-radius: 3px; /* 角丸 */
-  opacity: 0; /* はじめは隠しておく */
-  transition: 0.3s ease-in; /* アニメーション */
+  transition: 0.2s ease-in; /* アニメーション */
   transform: translateX(-50%); /* 親に対して中央配置 */
 }
