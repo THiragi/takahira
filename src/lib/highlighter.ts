@@ -40,6 +40,8 @@ const getShikiLanguages = (
 const aliases = {
   typescript: ['ts'],
   shellscript: ['shell', 'bash', 'sh', 'zsh'],
+  rust: ['rs'],
+  haskell: ['hs'],
 };
 
 export const shikiLangs = getShikiLanguages(aliases);
