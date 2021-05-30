@@ -2,7 +2,6 @@
 
 .card {
   padding-bottom: 4em;
-  border-bottom: 1px solid var(--color-quarter);
 
   .profile {
     @include mq(md) {
