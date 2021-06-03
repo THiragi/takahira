@@ -10,7 +10,7 @@ import Image from 'next/image';
 import unified from 'unified';
 import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
-import { getAllPostIds, getPostData } from '../../../lib/blog';
+import { getPostData } from '../../../lib/blog';
 import Article from '../../../components/article';
 import Container from '../../../components/container';
 import CustomLink from '../../../components/customLink';
@@ -58,14 +58,10 @@ const Page: NextPage<PageProps> = (props) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getAllPostIds();
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: 'blocking',
+});
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   const postData = await getPostData(context);
@@ -73,6 +69,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   return {
     props: {
       ...postData,
+      revalidate: 60 * 60,
     },
   };
 };
