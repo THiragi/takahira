@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-
 import { BlogResponse } from '../../types/blog';
-
 import { getAllPosts } from '../../lib/blog';
-
 import Container from '../../components/container';
 import BlogPost from '../../components/blogPost';
 
