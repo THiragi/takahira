@@ -5,7 +5,13 @@ import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import rehypeShiki from '@leafac/rehype-shiki';
 import { getHighlighter } from 'shiki';
-import { shikiTheme, shikiLangs } from './highlighter';
+import fs from 'fs';
+// import { shikiTheme, shikiLangs } from './highlighter';
+
+const path = process.cwd();
+fs.readdirSync(`${path}/node_modules/shiki/languages`);
+fs.readdirSync(`${path}/node_modules/shiki/themes`);
+fs.readdirSync(`${path}/node_modules/vscode-textmate`);
 
 export const markdownToHtml = async (markdown: string) =>
   unified()
@@ -13,8 +19,7 @@ export const markdownToHtml = async (markdown: string) =>
     .use(remarkRehype)
     .use(rehypeShiki, {
       highlighter: await getHighlighter({
-        theme: await shikiTheme,
-        langs: shikiLangs,
+        theme: 'nord',
       }),
     })
     .use(rehypeStringify)
