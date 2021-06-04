@@ -6,8 +6,8 @@ import rehypeStringify from 'rehype-stringify';
 import rehypeShiki from '@leafac/rehype-shiki';
 import { getHighlighter } from 'shiki';
 import fs from 'fs';
-// import { shikiTheme, shikiLangs } from './highlighter';
 
+// FIXME: Allows shiki to access production theme/language files.
 const path = process.cwd();
 fs.readdirSync(`${path}/node_modules/shiki/languages`);
 fs.readdirSync(`${path}/node_modules/shiki/themes`);
