@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { markdownToHtml, markdownToText } from './transpiler';
@@ -44,7 +43,6 @@ export const getAllPostIds = async () => {
   }));
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isDraft = (item: any): item is { draftKey: string } =>
   !!(item?.draftKey && typeof item.draftKey === 'string');
 

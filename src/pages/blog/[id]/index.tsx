@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import React from 'react';
 import {
   GetStaticPaths,
@@ -57,7 +56,6 @@ const Page: NextPage<PageProps> = (props) => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: [],
   fallback: 'blocking',

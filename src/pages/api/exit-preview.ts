@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/require-await */
 import { NextApiRequest, NextApiResponse } from 'next';
 import client from '../../lib/api';
 import toStringId from '../../lib/toStringId';
