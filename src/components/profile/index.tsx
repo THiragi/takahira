@@ -9,7 +9,7 @@ const Profile: React.VFC = () => (
       <div>
         <Image
           alt="portrait"
-          src="/static/images/20210623b.png"
+          src="/static/images/profile.png"
           height={164}
           width={164}
           className={styles.portrait}
