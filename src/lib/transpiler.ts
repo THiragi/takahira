@@ -18,7 +18,7 @@ export const markdownToHtml = async (markdown: string) =>
     .use(remarkRehype)
     .use(rehypeShiki, {
       highlighter: await getHighlighter({
-        theme: 'nord',
+        theme: 'slack-dark',
       }),
     })
     .use(rehypeStringify)
