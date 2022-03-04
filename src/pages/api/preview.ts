@@ -5,7 +5,7 @@ import client from '../../lib/api';
 const preview = async (
   req: NextApiRequest,
   res: NextApiResponse,
-): Promise<void> => {
+): Promise<NextApiResponse<any> | void> => {
   if (
     req.query.secret !== process.env.MICRO_CMS_PREVIEW_SECRET ||
     !req.query.id

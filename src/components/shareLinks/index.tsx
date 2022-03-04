@@ -15,8 +15,8 @@ const ShareLinks: React.FC<Props> = ({ id, title }) => {
     try {
       await navigator.clipboard.writeText(`https://takahira.io/blog/${id}`);
       setOpen(true);
-    } catch (error) {
-      throw new Error(error);
+    } catch {
+      throw new Error('copy failed');
     } finally {
       setTimeout(() => setOpen(false), 3000);
     }
