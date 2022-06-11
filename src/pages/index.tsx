@@ -1,23 +1,42 @@
 import React from 'react';
-
-import { NextPage } from 'next';
+import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
+import BlogList from '../components/BlogList';
+import Container from '../components/Container';
+import Profile from '../components/Profile';
+import { BlogResponse } from '../types/blog';
+import { getAllPosts } from '../lib/blog';
 
-import Container from '../components/container';
+type StaticProps = {
+  posts: BlogResponse[];
+};
 
-const Home: NextPage = () => (
-  <Container section="home">
-    <section style={{ textAlign: 'center' }}>
-      <p>このページは現在制作中です😌</p>
-      <p>
-        よろしければ、
-        <Link href="/blog">
-          <a>blog</a>
-        </Link>
-        の方を覗いてみてください
-      </p>
-    </section>
-  </Container>
-);
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
+
+const Home: NextPage<PageProps> = ({ posts }) => {
+  const filteredPosts = posts
+    .sort(
+      (a, b) =>
+        Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
+    )
+    .slice(0, 4);
+  return (
+    <Container section="home">
+      <Profile />
+      <section>
+        <BlogList posts={filteredPosts} />
+      </section>
+    </Container>
+  );
+};
+
+export const getStaticProps: GetStaticProps<StaticProps> = async () => {
+  const posts = await getAllPosts();
+
+  return {
+    props: { posts },
+    revalidate: 60 * 60,
+  };
+};
 
 export default Home;
