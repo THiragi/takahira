@@ -10,7 +10,7 @@ import { unified } from 'unified';
 import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
 import { getPostData } from '../../../lib/blog';
-import Article from '../../../components/article';
+import BlogArticle from '../../../components/BlogArticle';
 import Container from '../../../components/container';
 import CustomLink from '../../../components/customLink';
 import DraftHeader from '../../../components/draftHeader';
@@ -48,9 +48,9 @@ const Page: NextPage<PageProps> = (props) => {
         title={`${postData.title} - takahira`}
         description={postData.excerpt}
       >
-        <Article postData={postData}>
+        <BlogArticle postData={postData}>
           {processor.processSync(postData.body).result as React.ReactElement}
-        </Article>
+        </BlogArticle>
         <ShareLinks id={postData.id} title={postData.title} />
         <Profile />
       </Container>

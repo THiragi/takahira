@@ -10,7 +10,7 @@ type Props = {
   postData: BlogResponse;
 };
 
-const Article: React.FC<Props> = ({ children, postData }) => (
+const BlogArticle: React.FC<Props> = ({ children, postData }) => (
   <article>
     <header>
       <h1 className={styles.title}>{postData.title}</h1>
@@ -23,4 +23,4 @@ const Article: React.FC<Props> = ({ children, postData }) => (
   </article>
 );
 
-export default Article;
+export default BlogArticle;

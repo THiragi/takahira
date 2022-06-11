@@ -10,7 +10,7 @@ type Props = {
   post: BlogResponse;
 };
 
-const BlogPost: React.VFC<Props> = ({ post }) => {
+const BlogCard: React.VFC<Props> = ({ post }) => {
   const { id, publishedAt, title, excerpt } = post;
 
   return (
@@ -28,4 +28,4 @@ const BlogPost: React.VFC<Props> = ({ post }) => {
   );
 };
 
-export default BlogPost;
+export default BlogCard;

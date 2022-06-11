@@ -3,7 +3,7 @@ import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import { BlogResponse } from '../../types/blog';
 import { getAllPosts } from '../../lib/blog';
 import Container from '../../components/container';
-import BlogPost from '../../components/blogPost';
+import BlogCard from '../../components/BlogCard';
 
 type StaticProps = {
   posts: BlogResponse[];
@@ -34,7 +34,7 @@ const Page: NextPage<PageProps> = ({ posts }) => {
         {!filteredPosts.length ? (
           <h3>記事が見つかりません。</h3>
         ) : (
-          filteredPosts.map((blog) => <BlogPost key={blog.id} post={blog} />)
+          filteredPosts.map((blog) => <BlogCard key={blog.id} post={blog} />)
         )}
       </section>
     </Container>
