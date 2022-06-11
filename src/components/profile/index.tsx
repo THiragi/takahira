@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import SocialLinks from '../SocialLinks';
+import SocialLinks from '../socialLinks';
 import styles from './index.module.scss';
 
 const Profile: React.VFC = () => (

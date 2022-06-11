@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import { BlogResponse } from '../../types/blog';
 import { getAllPosts } from '../../lib/blog';
-import Container from '../../components/Container';
-import BlogList from '../../components/BlogList';
+import Container from '../../components/container';
+import BlogList from '../../components/blogList';
 
 type StaticProps = {
   posts: BlogResponse[];
