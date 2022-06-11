@@ -1,5 +1,5 @@
 import React from 'react';
-import Date from '../Date';
+import FormatDate from '../FormatDate';
 
 import { BlogResponse } from '../../types/blog';
 
@@ -16,7 +16,7 @@ const BlogArticle: React.FC<Props> = ({ children, postData }) => (
       <h1 className={styles.title}>{postData.title}</h1>
       <div className={styles.date}>
         published at{' '}
-        <Date dateString={postData.publishedAt} dateFormat="yyyy.LL.dd" />
+        <FormatDate dateString={postData.publishedAt} dateFormat="yyyy.LL.dd" />
       </div>
     </header>
     <div className={styles.content}>{children}</div>

@@ -7,10 +7,10 @@ type Props = {
   dateFormat: string;
 };
 
-const Date: React.VFC<Props> = ({ dateString, dateFormat }) => {
+const FormatDate: React.VFC<Props> = ({ dateString, dateFormat }) => {
   const date = parseISO(dateString);
 
   return <time dateTime={dateString}>{format(date, dateFormat)}</time>;
 };
 
-export default Date;
+export default FormatDate;
