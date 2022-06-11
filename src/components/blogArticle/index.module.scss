@@ -1,0 +1,51 @@
+.title {
+  font-size: 2em;
+}
+
+.date {
+  font-family: var(--font-mono);
+  font-size: 16px;
+}
+
+.content {
+  margin: 5em 0;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 4em 0 2em 0;
+  }
+
+  ul {
+    list-style: square inside;
+  }
+
+  p {
+    margin: 2em 0;
+  }
+
+  code {
+    font-family: var(--font-mono);
+  }
+
+  pre {
+    overflow: auto;
+
+    code {
+      font-size: 14px;
+    }
+  }
+
+  :not(pre) > code {
+    background-color: rgb(243, 244, 246);
+    // color: rgb(186, 85, 132);
+
+    &::after,
+    &::before {
+      content: '`';
+    }
+  }
+}
