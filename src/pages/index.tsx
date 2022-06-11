@@ -1,6 +1,5 @@
 import React from 'react';
 import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
-import Link from 'next/link';
 import BlogList from '../components/BlogList';
 import Container from '../components/Container';
 import Profile from '../components/Profile';
