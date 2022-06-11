@@ -1,5 +1,5 @@
 import React from 'react';
-import SocialLinks from '../SocialLinks';
+import SocialLinks from '../socialLinks';
 import styles from './index.module.scss';
 
 const ContactInfo: React.VFC = () => (

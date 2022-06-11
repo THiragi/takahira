@@ -10,12 +10,12 @@ import { unified } from 'unified';
 import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
 import { getPostData } from '../../../lib/blog';
-import BlogArticle from '../../../components/BlogArticle';
-import Container from '../../../components/Container';
-import CustomLink from '../../../components/CustomLink';
-import DraftHeader from '../../../components/DraftHeader';
-import ShareLinks from '../../../components/ShareLinks';
-import Profile from '../../../components/Profile';
+import BlogArticle from '../../../components/blogArticle';
+import Container from '../../../components/container';
+import CustomLink from '../../../components/customLink';
+import DraftHeader from '../../../components/draftHeader';
+import ShareLinks from '../../../components/shareLinks';
+import Profile from '../../../components/profile';
 import { BlogResponse } from '../../../types/blog';
 
 type StaticProps = {

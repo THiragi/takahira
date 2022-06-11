@@ -2,9 +2,9 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import React from 'react';
-import Header from '../Header';
-import Footer from '../Footer';
-import Nav from '../Nav';
+import Header from '../header';
+import Footer from '../footer';
+import Nav from '../nav';
 import styles from './index.module.scss';
 
 type Props = {
