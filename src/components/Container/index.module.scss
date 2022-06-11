@@ -1,0 +1,11 @@
+@import '../../styles/variables.scss';
+
+.container {
+  padding: 0 32px;
+
+  main {
+    max-width: var(--max-width);
+    padding-top: 32px;
+    margin: 0 auto;
+  }
+}

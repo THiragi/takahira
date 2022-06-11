@@ -1,6 +1,6 @@
 import React from 'react';
 import { BlogResponse } from '../../types/blog';
-import BlogCard from '../blogCard';
+import BlogCard from '../BlogCard';
 
 type Props = {
   posts: BlogResponse[];
