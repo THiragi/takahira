@@ -1,9 +1,9 @@
 import React from 'react';
 import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
-import BlogList from '../components/blogList';
-import Container from '../components/container';
-import Profile from '../components/profile';
+import BlogList from '../components/BlogList';
+import Container from '../components/Container';
+import Profile from '../components/Profile';
 import { BlogResponse } from '../types/blog';
 import { getAllPosts } from '../lib/blog';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { BlogResponse } from '../../types/blog';
 
-import FormatDate from '../formatDate';
+import FormatDate from '../FormatDate';
 
 import styles from './index.module.scss';
 

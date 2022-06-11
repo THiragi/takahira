@@ -1,5 +1,5 @@
 import React from 'react';
-import FormatDate from '../formatDate';
+import FormatDate from '../FormatDate';
 
 import { BlogResponse } from '../../types/blog';
 
