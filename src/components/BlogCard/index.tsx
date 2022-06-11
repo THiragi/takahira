@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { BlogResponse } from '../../types/blog';
 
-import Date from '../date';
+import Date from '../Date';
 
 import styles from './index.module.scss';
 

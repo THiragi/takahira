@@ -1,5 +1,5 @@
 import React from 'react';
-import Date from '../date';
+import Date from '../Date';
 
 import { BlogResponse } from '../../types/blog';
 

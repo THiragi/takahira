@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import { BlogResponse } from '../../types/blog';
 import { getAllPosts } from '../../lib/blog';
-import Container from '../../components/container';
+import Container from '../../components/Container';
 import BlogCard from '../../components/BlogCard';
 
 type StaticProps = {
