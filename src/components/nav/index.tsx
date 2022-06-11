@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './index.module.scss';
+import { Home, User, FileText, Mail } from 'react-feather';
 
 const Nav: React.VFC = () => (
   <div className={styles.navbar}>
@@ -8,22 +9,30 @@ const Nav: React.VFC = () => (
       <ul>
         <li>
           <Link href="/">
-            <a>home</a>
+            <a>
+              <Home />
+            </a>
           </Link>
         </li>
         <li>
           <Link href="/about">
-            <a>about</a>
+            <a>
+              <User />
+            </a>
           </Link>
         </li>
         <li>
           <Link href="/blog" prefetch={false}>
-            <a>blog</a>
+            <a>
+              <FileText />
+            </a>
           </Link>
         </li>
         <li>
           <Link href="/contact">
-            <a>contact</a>
+            <a>
+              <Mail />
+            </a>
           </Link>
         </li>
       </ul>
