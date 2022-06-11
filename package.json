@@ -16,6 +16,7 @@
     "lint:style": "stylelint 'src/**/*.{css,less,sass,scss}'",
     "lint:style:fix": "stylelint --fix 'src/**/*.{css,less,sass,scss}'",
     "test": "jest",
+    "typecheck": "tsc --noEmit",
     "api:build": "aspida"
   },
   "dependencies": {
