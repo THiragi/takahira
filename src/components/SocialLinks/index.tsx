@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 const SocialLinks: React.VFC = () => (
   <div className={styles.socials}>
     <a
-      href="https://twitter.com/levelwood1"
+      href="https://twitter.com/tkshrg"
       rel="nofollow noopener noreferrer"
       target="_blank"
       title="Twitter"

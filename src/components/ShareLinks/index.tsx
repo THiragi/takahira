@@ -25,7 +25,7 @@ const ShareLinks: React.FC<Props> = ({ id, title }) => {
   return (
     <div className={styles.share}>
       <a
-        href={`https://twitter.com/share?url=https://takahira.io/blog/${id}/&text=${encodedTitle}&via=levelwood1`}
+        href={`https://twitter.com/share?url=https://takahira.io/blog/${id}/&text=${encodedTitle}&via=tkshrg`}
         rel="nofollow noopener noreferrer"
         target="_blank"
         title="記事をツイート"
